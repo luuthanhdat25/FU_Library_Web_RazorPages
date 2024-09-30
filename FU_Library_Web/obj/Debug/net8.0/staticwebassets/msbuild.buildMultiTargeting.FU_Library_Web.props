@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FU_Library_Web.props" />
+</Project>
