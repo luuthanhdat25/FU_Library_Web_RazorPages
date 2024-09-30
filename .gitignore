@@ -134,7 +134,6 @@ config.ps1
 .idea/
 
 # VSCode extension outputs
-dist/
 out/
 
 # Test generated
