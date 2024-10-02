@@ -4,7 +4,29 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="text-center">
+        <form class="d-flex justify-content-center" method="get" action="/SearchBook" onsubmit="return validateForm()">
+            <select class="form-select w-auto" name="options">
+                <option value="0" selected>All</option>
+                <option value="1">Title</option>
+                <option value="2">Author</option>
+                <option value="3">Publisher</option>
+            </select>
+            <input class="form-control mx-2" type="search" name="keyword" placeholder="Everything" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+
+        <div class="mt-4 d-flex align-items-center">
+            <label for="librarySelect" class="form-label fw-bold me-2 mb-0">Limit search <All library></label>
+            <select class="form-select w-auto" id="librarySelect" name="libraryOptions">
+                <option value="all" selected>All Libraries</option>
+                <option value="library1">Library 1</option>
+                <option value="library2">Library 2</option>
+                <option value="library3">Library 3</option>
+                <option value="library4">Library 4</option>
+            </select>
+        </div>
+
+    </div>
 </div>

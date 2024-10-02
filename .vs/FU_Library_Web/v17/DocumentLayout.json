@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Workspace\\Chuy\u00EAn ng\u00E0nh\\Chuy\u00EAn ng\u00E0nh 7\\PRN221\\Labs\\FU_Library_Web\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BCA51730-400B-4A22-B307-2E47A78AB58A}|FU_Library_Web\\FU_Library_Web.csproj|d:\\workspace\\chuy\u00EAn ng\u00E0nh\\chuy\u00EAn ng\u00E0nh 7\\prn221\\labs\\fu_library_web\\fu_library_web\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BCA51730-400B-4A22-B307-2E47A78AB58A}|FU_Library_Web\\FU_Library_Web.csproj|solutionrelative:fu_library_web\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 76,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Workspace\\Chuy\u00EAn ng\u00E0nh\\Chuy\u00EAn ng\u00E0nh 7\\PRN221\\Labs\\FU_Library_Web\\FU_Library_Web\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "FU_Library_Web\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Workspace\\Chuy\u00EAn ng\u00E0nh\\Chuy\u00EAn ng\u00E0nh 7\\PRN221\\Labs\\FU_Library_Web\\FU_Library_Web\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "FU_Library_Web\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAAAoAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-02T08:46:24.469Z",
+              "EditorCaption": ""
             }
           ]
         },

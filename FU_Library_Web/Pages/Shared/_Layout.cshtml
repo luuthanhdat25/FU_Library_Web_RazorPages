@@ -10,20 +10,42 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <div class="row py-3">
+                <div class="col-md-3 col-12 d-flex align-items-center">
+                    <a href="/" title="Thư viện đại học FPT">
+                        <img src="https://upload.wikimedia.org/wikipedia/vi/2/2d/Logo_Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_FPT.svg" alt="Thư viện đại học FPT" class="img-fluid" style="max-width: 100px;">
+                    </a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h1 class="display-6 fw-bold"><strong class="text-danger">FPTU Library</strong></h1>
+                    <p class="lead">Open: 08:15 - 21:00 Weekday | 08:00 - 12:00 &amp; 13:00 - 17:00 Weekend</p>
+                </div>
+                <div class="col-md-3 col-12 d-flex align-items-center justify-content-end">
+                    <button class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">FU_Library_Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link active" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link" href="/Pages/Index/12">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Pages/Index/15">Rules</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/News">News</a>
                         </li>
                     </ul>
                 </div>
@@ -36,11 +58,28 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted py-4">
         <div class="container">
-            &copy; 2024 - FU_Library_Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>FPT University Library</h5>
+                    <ul>
+                        <li>Phòng 107, Tòa nhà Delta, Đại học FPT, Khu CNC Hòa Lạc, Hà Nội</li>
+                        <li><a href="mailto:thuvien_fu_hoalac@fpt.edu.vn">thuvien_fu_hoalac@fpt.edu.vn</a></li>
+                        <li>02466 805 912</li>
+                    </ul>
+                </div>
+
+
+                <div class="col-md-3">
+                    <h5 class="fw-bold">Follow us</h5>
+                    <a href="https://www.facebook.com/thuvienfu" class="text-muted fs-4 me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/channel/UCXavXXYzplrnIeVl0-wR3uw" class="text-muted fs-4"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

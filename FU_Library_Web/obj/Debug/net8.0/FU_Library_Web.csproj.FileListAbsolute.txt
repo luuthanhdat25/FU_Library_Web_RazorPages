@@ -135,3 +135,4 @@ D:\Workspace\Chuyên ngành\Chuyên ngành 7\PRN221\Labs\FU_Library_Web\FU_Libra
 D:\Workspace\Chuyên ngành\Chuyên ngành 7\PRN221\Labs\FU_Library_Web\FU_Library_Web\obj\Debug\net8.0\FU_Library_Web.pdb
 D:\Workspace\Chuyên ngành\Chuyên ngành 7\PRN221\Labs\FU_Library_Web\FU_Library_Web\obj\Debug\net8.0\FU_Library_Web.genruntimeconfig.cache
 D:\Workspace\Chuyên ngành\Chuyên ngành 7\PRN221\Labs\FU_Library_Web\FU_Library_Web\obj\Debug\net8.0\ref\FU_Library_Web.dll
+D:\Workspace\Chuyên ngành\Chuyên ngành 7\PRN221\Labs\FU_Library_Web\FU_Library_Web\obj\Debug\net8.0\FU_Library_Web.sourcelink.json
