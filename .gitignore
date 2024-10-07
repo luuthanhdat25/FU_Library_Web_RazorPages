@@ -1,11 +1,16 @@
+# Swap files
 *.swp
 *.*~
+
+# Lock files
 project.lock.json
 .DS_Store
+
+# Python cache files
 *.pyc
 
 # Visual Studio Code
-.vscode
+.vscode/
 
 # User-specific files
 *.suo
@@ -28,5 +33,5 @@ msbuild.log
 msbuild.err
 msbuild.wrn
 
-# Visual Studio 2015
+# Visual Studio cache
 .vs/
