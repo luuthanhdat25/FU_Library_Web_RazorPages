@@ -6,7 +6,8 @@ namespace FU_Library_Web
 {
 	public class DatabaseContext : DbContext
 	{
-		public DbSet<Book> Books { get; set; }
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+        public DbSet<Book> Books { get; set; }
 		public DbSet<BookAuthor> BookAuthors { get; set; }
 		public DbSet<BookCategory> BookCategories { get; set; }
 		public DbSet<BorrowBook> BorrowBooks { get; set; }
@@ -18,20 +19,20 @@ namespace FU_Library_Web
 		public DbSet<RequestStatus> RequestStatuses { get; set; }
 		public DbSet<User> Users { get; set; }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			if (!optionsBuilder.IsConfigured)
-			{
-				IConfigurationRoot configuration = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json")
-                    .Build();
+		//protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		//{
+		//	if (!optionsBuilder.IsConfigured)
+		//	{
+		//		IConfigurationRoot configuration = new ConfigurationBuilder()
+  //                  .SetBasePath(Directory.GetCurrentDirectory())
+  //                  .AddJsonFile("appsettings.json")
+  //                  .Build();
 
-                var connectionString = configuration.GetConnectionString("DefaultConnection");
+  //              var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-				optionsBuilder.UseSqlServer(connectionString);
-			}
-		}
+		//		optionsBuilder.UseSqlServer(connectionString);
+		//	}
+		//}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

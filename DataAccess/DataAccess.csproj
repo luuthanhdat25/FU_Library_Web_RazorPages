@@ -36,4 +36,9 @@
     <ProjectReference Include="..\BusinessObject\BusinessObject.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entity\" />
+    <Folder Include="Repository\Implement\" />
+  </ItemGroup>
+
 </Project>

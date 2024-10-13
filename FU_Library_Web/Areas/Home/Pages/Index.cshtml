@@ -1,0 +1,186 @@
+﻿@page
+@model FU_Library_Web.Areas.Home.Pages.IndexModel
+@{
+    ViewData["Title"] = "FPT Library";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/styles.css"> <!-- Link to your CSS file -->
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header-container {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+        }
+
+            .header-container img {
+                max-width: 200px;;
+            }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .language-login {
+        display: flex;
+        align-items: center;
+        }
+
+            .language-login a {
+                color: #0870b7;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 5px;
+            }
+
+
+
+        h1 {
+            color: #faae2d;
+            font-size: 46px;
+            margin: 10px 0;
+        }
+
+        p {
+            color: black;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-category {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .search-input {
+            padding: 10px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        .search-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #ff6600; /* Button color */
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+            .search-button:hover {
+                background-color: #ff9933; /* Button hover color */
+            }
+
+        .navigation {
+            height: 52px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            background-color: #faae2d;
+        }
+
+            .navigation ul {
+                list-style-type: none;
+                padding: 0;
+            }
+                
+            .navigation ul li:hover {
+                background-color: #000;
+            }
+
+                .navigation ul li {
+                    padding: 16.2px 15px 18px 15px;
+                    display: inline;
+                    /* height: 52px; */
+                    margin-left: -4px;
+                    font-weight: bold;
+                }
+
+                    .navigation ul li a {
+                        text-decoration: none;
+                        color: #fff; /* Link color */
+                    }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+            footer p {
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="~/images/logo.png" alt="FPT University Logo"> 
+            </div>
+            <div class="welcome-info">
+                <h1>Welcome to <strong style="color: #f3030f;">FPT Library</strong> </h1>
+                <p>Open: 08:15 - 21:00 Weekday | 08:00 - 12:00 & 13:00 - 17:00 Weekend</p>
+            </div>
+            <div class="language-login">
+                <a href="/AUth/Login">Login</a> | <a href="#">Vietnamese</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Nội quy</a></li>
+                <li><a href="#">Dịch vụ</a></li>
+                <li><a href="#">Bộ sưu tập</a></li>
+                <li><a href="#">Tin tức</a></li>
+            </ul>
+        </nav>
+
+        <div class="search-container">
+            <select class="search-category">
+                <option>All</option>
+                <option>Books</option>
+                <option>Journals</option>
+                <option>Media</option>
+                <!-- Add more options as needed -->
+            </select>
+            <input type="text" class="search-input" placeholder="Everything">
+            <button class="search-button">Search</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 FPT University. All rights reserved.</p>
+    </footer>
+</body>
+</html>
