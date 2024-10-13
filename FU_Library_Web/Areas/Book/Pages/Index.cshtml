@@ -1,4 +1,194 @@
 ﻿@page
 @model FU_Library_Web.Areas.Book.Pages.IndexModel
 @{
+    ViewData["Title"] = "Book List";
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List - FPTU Library</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #f7c400;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .logo {
+            display: inline-block;
+            margin-right: 2rem;
+        }
+
+            .logo img {
+                height: 40px;
+            }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .nav {
+            background-color: #f7c400;
+            padding: 1rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+            .nav a {
+                display: inline-block;
+                margin: 0 1rem;
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+            }
+
+        .book-list {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .book-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 1rem;
+        }
+
+        .book-image {
+            flex: 0 0 100px; /* Fixed width for image */
+            margin-right: 1rem;
+        }
+
+            .book-image img {
+                width: 100%; /* Responsive image */
+                height: auto; /* Maintain aspect ratio */
+            }
+
+        .book-details {
+            flex-grow: 1; /* Allow details to grow */
+        }
+
+        .book-buttons {
+            display: flex;
+            gap: 1rem; /* Space between buttons */
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #e76f51;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #d65d45;
+            }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+            .footer a {
+                color: #f7c400;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://fpt.edu.vn/Content/images/logo-university.png" alt="FPT University Logo">
+            </div>
+            <h1>Welcome to FPTU Library</h1>
+            <p>Open: 08:15 - 21:00 Weekday | 08:00 - 12:00 & 13:00 - 17:00 Weekend</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav">
+            <a asp-page="/Create" asp-area="Book">Create Book</a>
+            <a asp-page="/Index" asp-area="Book">Book List</a>
+            <a asp-page="/Edit" asp-area="Book">Update Book</a>
+            <a asp-page="/Details" asp-area="Book">Book Details</a>
+        </div>
+
+        <div class="book-list">
+            <h2>List of Books</h2>
+            @* Static Book Data *@
+            @{
+                var books = new List<dynamic>
+            {
+            new { Id = 1, Title = "C# Programming", AuthorName = "John Doe", Publisher = "Tech Press", PublicationYear = 2020, ImageUrl = "https://via.placeholder.com/100" },
+            new { Id = 2, Title = "ASP.NET Core in Action", AuthorName = "Jane Smith", Publisher = "Dev Books", PublicationYear = 2021, ImageUrl = "https://via.placeholder.com/100" },
+            new { Id = 3, Title = "Learning Java", AuthorName = "Alice Johnson", Publisher = "Programming Books", PublicationYear = 2019, ImageUrl = "https://via.placeholder.com/100" }
+            };
+            }
+
+            @foreach (var book in books) // Loop through the list of books
+            {
+                <div class="book-item">
+                    <div class="book-image">
+                        <img src="@book.ImageUrl" alt="Book Image"> <!-- Assuming ImageUrl is the URL of the book image -->
+                    </div>
+                    <div class="book-details">
+                        <h3>@book.Title</h3>
+                        <p><strong>Author:</strong> @book.AuthorName</p>
+                        <p><strong>Publisher:</strong> @book.Publisher</p>
+                        <p><strong>Publication Year:</strong> @book.PublicationYear</p>
+                    </div>
+                    <div class="book-buttons">
+                        <button class="details-button" asp-page="/Details" asp-area="Book" asp-route-id="@book.Id">Details</button>
+                        <button class="update-button" asp-page="/Edit" asp-area="Book" asp-route-id="@book.Id">Update</button>
+                        <button class="delete-button" asp-page="/Delete" asp-area="Book" asp-route-id="@book.Id">Delete</button>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 FPT University Library | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>

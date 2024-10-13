@@ -25,7 +25,7 @@ namespace FU_Library_Web.Models
 		public string Publisher { get; set; }
 
 		[Required]
-		public DateTime PublicationYear { get; set; }
+		public string PublicationYear { get; set; }
 
 		[Required]
 		[MaxLength]
@@ -34,8 +34,10 @@ namespace FU_Library_Web.Models
 		[Required]
 		public bool AvailabilityStatus { get; set; }
 
-		
-		[ForeignKey("BookAuthorId")]
+        [Required]
+        public string Image { get; set; }
+
+        [ForeignKey("BookAuthorId")]
 		public BookAuthor BookAuthor { get; set; }
 		
 		[Required]

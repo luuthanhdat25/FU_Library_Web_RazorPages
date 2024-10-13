@@ -1,4 +1,97 @@
 ﻿@page
 @model FU_Library_Web.Areas.Book.Pages.DetailsModel
 @{
+    ViewData["Title"] = "Book Details";
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - FPTU Library</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #f7c400;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-image {
+            max-width: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .book-details {
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #f7c400;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>FPTU Library</h1>
+    </header>
+
+    <div class="container">
+        <h1>@Model.Book.Title</h1>
+        <img src="@Model.Book.Image" alt="Book Image" class="book-image">
+        
+        <div class="book-details">
+            <p><strong>ISBN:</strong> @Model.Book.ISBN</p>
+            <p><strong>Edition:</strong> @Model.Book.Edition</p>
+            <p><strong>Publisher:</strong> @Model.Book.Publisher</p>
+            <p><strong>Publication Year:</strong> @Model.Book.PublicationYear</p>
+            <p><strong>Description:</strong> @Model.Book.Description</p>
+            <p><strong>Availability:</strong> @(Model.Book.AvailabilityStatus ? "Available" : "Not Available")</p>
+            <p><strong>Author:</strong> @Model.Book.BookAuthor.FullName</p>
+            <p><strong>Category:</strong> @Model.Book.BookCategory.Name</p>
+        </div>
+
+        <a href="/Book/Index" class="btn">Back to Book List</a>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 FPT University Library | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>

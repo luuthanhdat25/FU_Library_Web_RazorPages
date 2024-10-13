@@ -1,6 +1,191 @@
 ﻿@page
 @model FU_Library_Web.Areas.Book.Pages.CreateModel
 @{
-	ViewData["Title"] = "Create Book";
+    ViewData["Title"] = "Create Book";
 }
-<h1>Create Book</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Book - FPTU Library</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #f7c400;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .logo {
+            display: inline-block;
+            margin-right: 2rem;
+        }
+
+            .logo img {
+                height: 40px;
+            }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .nav {
+            background-color: #f7c400;
+            padding: 1rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+            .nav a {
+                display: inline-block;
+                margin: 0 1rem;
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+            }
+
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Adjusting the width for input and select fields */
+        input[type="text"], select, textarea, input[type="file"] {
+            width: calc(100% - 1rem); /* Full width minus padding */
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        button[type="submit"] {
+            padding: 0.75rem 1.5rem;
+            background-color: #e76f51;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #d65d45;
+            }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+            .footer a {
+                color: #f7c400;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://fpt.edu.vn/Content/images/logo-university.png" alt="FPT University Logo">
+            </div>
+            <h1>Welcome to FPTU Library</h1>
+            <p>Open: 08:15 - 21:00 Weekday | 08:00 - 12:00 & 13:00 - 17:00 Weekend</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav">
+            <a asp-page="/Create" asp-area="Book">Create Book</a>
+            <a asp-page="/Index" asp-area="Book">Book List</a>
+            <a asp-page="/Edit" asp-area="Book">Update Book</a>
+            <a asp-page="/Details" asp-area="Book">Book Details</a>
+        </div>
+
+        <div class="form-container">
+            <h2>Add a New Book</h2>
+            <form method="post" enctype="multipart/form-data">
+                <!-- Added enctype for file upload -->
+                <label for="Title">Title</label>
+                <input type="text" id="Title" name="Book.Title" required maxlength="150">
+
+                <label for="ISBN">ISBN</label>
+                <input type="text" id="ISBN" name="Book.ISBN" required maxlength="50">
+
+                <label for="Edition">Edition</label>
+                <input type="text" id="Edition" name="Book.Edition" maxlength="50">
+
+                <label for="Publisher">Publisher</label>
+                <input type="text" id="Publisher" name="Book.Publisher" required maxlength="255">
+
+                <label for="PublicationYear">Publication Year</label>
+                <input type="text" id="PublicationYear" name="Book.PublicationYear" required>
+
+                <label for="Description">Description</label>
+                <textarea id="Description" name="Book.Description" required></textarea>
+
+                <label for="BookAuthorName">Book Author</label>
+                <input type="text" id="BookAuthorName" name="Book.BookAuthorName" required maxlength="255">
+
+                <label for="BookImage">Book Image</label> <!-- New field for book image upload -->
+                <input type="file" id="BookImage" name="Book.BookImage" accept="image/*" required> <!-- Accepting only images -->
+
+                <label for="BookCategoryId">Book Category</label>
+                <select id="BookCategoryId" name="Book.BookCategoryId" required>
+                    <!-- Options for categories should be filled dynamically -->
+                </select>
+
+                <label for="AvailabilityStatus">Availability Status</label>
+                <select id="AvailabilityStatus" name="Book.AvailabilityStatus" required>
+                    <option value="true">Available</option>
+                    <option value="false">Not Available</option>
+                </select>
+
+                <button type="submit">Create Book</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 FPT University Library | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>
