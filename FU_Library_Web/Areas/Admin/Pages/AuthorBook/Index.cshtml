@@ -1,0 +1,80 @@
+﻿@page
+@model FU_Library_Web.Areas.Admin.Pages.AuthorBook.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+    <div class="col-4">
+        <h1>Tạo Tác Giả Mới</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" asp-page-handler="Create" id="createForm">
+                    <div class="form-group">
+                        <label class="control-label">Tên tác giả</label>
+                        <input name="authorName" id="cateName" class="form-control" type="text" style="width: 200px;" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Mô tả</label>
+                        <input name="authorDes" class="form-control" type="text" style="width: 200px;" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" id="submitBtn" disabled />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookAuthor[0].FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookAuthor[0].Description)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.BookAuthor)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <a class="btn btn-success" asp-area="Admin" asp-page="/AuthorBook/Edit" asp-route-id="@item.BookAuthorId">Edit</a>
+                            <form method="post" asp-page-handler="Delete" id="deleteForm-@item.BookAuthorId" style="display: inline;">
+                                <a href="javascript:void(0);" class="btn btn-danger"
+                                   onclick="confirmDelete('@item.BookAuthorId')">Delete</a>
+                                <input type="hidden" name="id" value="@item.BookAuthorId" />
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const cateNameInput = document.getElementById('cateName');
+    const submitButton = document.getElementById('submitBtn');
+    cateNameInput.addEventListener('input', function () {
+        if (cateNameInput.value.trim() === '') {
+            submitButton.disabled = true;
+        } else {
+            submitButton.disabled = false;
+        }
+    });
+    function confirmDelete(formId) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            document.getElementById('deleteForm-' + formId).submit();
+        }
+    }
+</script>

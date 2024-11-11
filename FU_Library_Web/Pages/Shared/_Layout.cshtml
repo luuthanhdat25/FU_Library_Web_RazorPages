@@ -81,7 +81,7 @@
             <div class="container-fluid">
                 <ul>
                     <li><a href="/">Trang chủ</a></li>
-                    <li><a href="/Login">Đăng nhập</a></li> <!-- Nút đi tới trang đăng nhập -->
+                    <li><a href="/Login">Đăng nhập</a></li>
                 </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -90,12 +90,14 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                Tin tức
+                                Quản Lý ADMIN
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                                <li><a class="dropdown-item" asp-area="News" asp-page="/Index">Tin hoạt động</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/New/Index">Tin hoạt động</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/Category/Index">Thể loại sách</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/AuthorBook/Index">Tác giả sách</a></li>
                             </ul>
-                        </li>
+                        </li>   
                     </ul>
                 </div>
             </div>
