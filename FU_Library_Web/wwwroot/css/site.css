@@ -251,14 +251,38 @@ label {
 
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
 
-    footer p {
-        color: #fff;
+.fb_iframe_widget {
+    float: right;
+}
+
+/*modal disable scroll*/
+/*body.modal-open {
+    overflow: hidden;
+    position: fixed;
+}*/
+
+@media screen and (min-width: 1024px) {
+    .main-search .select-options {
+        width: 120px;
     }
+
+        .main-search .select-options select {
+            width: 120px;
+        }
+
+    .main-search input#txtSearch {
+        width: 660px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .main-search .select-options {
+        width: 140px;
+    }
+
+        .main-search .select-options select {
+            width: 140px;
+        }
+}
