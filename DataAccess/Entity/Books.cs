@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace FU_Library_Web.Models
+﻿namespace DataAccess.Entity
 {
-	public class Book
+	public class Books
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid BookId { get; set; }
 
 		[Required]
@@ -25,7 +21,7 @@ namespace FU_Library_Web.Models
 		public string Publisher { get; set; }
 
 		[Required]
-		public DateTime PublicationYear { get; set; }
+		public DateOnly PublicationYear { get; set; }
 
 		[Required]
 		[MaxLength]
@@ -33,15 +29,11 @@ namespace FU_Library_Web.Models
 
 		[Required]
 		public bool AvailabilityStatus { get; set; }
-
-		
-		[ForeignKey("BookAuthorId")]
-		public BookAuthor BookAuthor { get; set; }
+		public string ImageUrl { get; set; }
+		public BookAuthors BookAuthor { get; set; }
 		
 		[Required]
 		public Guid BookCategoryId { get; set; }
-
-		[ForeignKey("BookCategoryId")]
-		public BookCategory BookCategory { get; set; }
+		public BookCategories BookCategory { get; set; }
 	}
 }

@@ -1,19 +1,7 @@
 ﻿@page
-@model FU_Library_Web.Areas.Auth.Pages.IndexModel
 @{
     Layout = "_Layout";
 }
-
-        @if (!ModelState.IsValid)
-        {
-            <div class="error-message">
-                @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    <div>@error.ErrorMessage</div>
-                }
-            </div>
-        }
-
 <div class="row">
     <div class="col-7 m-0 p-0" style="height: 400px">
         <img src="~/images/fpt-university.jpg" class="img-fluid" alt="Library Closure Notice">

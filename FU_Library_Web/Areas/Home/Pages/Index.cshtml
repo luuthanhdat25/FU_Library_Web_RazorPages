@@ -4,183 +4,82 @@
     ViewData["Title"] = "FPT Library";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/css/styles.css"> <!-- Link to your CSS file -->
-    <title>@ViewData["Title"]</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .header-container {
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            justify-content: space-around;
-        }
-
-            .header-container img {
-                max-width: 200px;;
-            }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .language-login {
-        display: flex;
-        align-items: center;
-        }
-
-            .language-login a {
-                color: #0870b7;
-                text-decoration: none;
-                font-weight: bold;
-                margin: 5px;
-            }
-
-
-
-        h1 {
-            color: #faae2d;
-            font-size: 46px;
-            margin: 10px 0;
-        }
-
-        p {
-            color: black;
-            margin: 5px 0;
-            font-weight: bold;
-        }
-
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .search-category {
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .search-input {
-            padding: 10px;
-            font-size: 16px;
-            margin-left: 10px;
-        }
-
-        .search-button {
-            padding: 10px 15px;
-            font-size: 16px;
-            background-color: #ff6600; /* Button color */
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-            .search-button:hover {
-                background-color: #ff9933; /* Button hover color */
-            }
-
-        .navigation {
-            height: 52px;
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            background-color: #faae2d;
-        }
-
-            .navigation ul {
-                list-style-type: none;
-                padding: 0;
-            }
-                
-            .navigation ul li:hover {
-                background-color: #000;
-            }
-
-                .navigation ul li {
-                    padding: 16.2px 15px 18px 15px;
-                    display: inline;
-                    /* height: 52px; */
-                    margin-left: -4px;
-                    font-weight: bold;
-                }
-
-                    .navigation ul li a {
-                        text-decoration: none;
-                        color: #fff; /* Link color */
-                    }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-            footer p {
-                color: #fff;
-            }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="~/images/logo.png" alt="FPT University Logo"> 
-            </div>
-            <div class="welcome-info">
-                <h1>Welcome to <strong style="color: #f3030f;">FPT Library</strong> </h1>
-                <p>Open: 08:15 - 21:00 Weekday | 08:00 - 12:00 & 13:00 - 17:00 Weekend</p>
-            </div>
-            <div class="language-login">
-                <a href="/AUth/Login">Login</a> | <a href="#">Vietnamese</a>
+<div class="main-wrapper">
+    <div class="main-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-search-block">
+                        <form method="get" action="/SearchBook" onsubmit="return validateForm()">
+                            <div class="main-search-block-content">
+                                <div class="select-options">
+                                    <select name="options" id="slOptions">
+                                        <option value="0" selected="selected">All</option>
+                                        <option value="1">Title</option>
+                                        <option value="2">Author</option>
+                                        <option value="3">Publisher</option>
+                                        <option value="4">DDC</option>
+                                        <option value="5">Language</option>
+                                        <option value="6">Keyword</option>
+                                        <option value="7">Subject</option>
+                                        <option value="8">ISBN</option>
+                                    </select>
+                                </div>
+                                <input type="search" id="txtSearch" name="keyword" size="100" placeholder="Everything" autocomplete="off">
+                                <input type="submit" id="btnSearch" value="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </div>
+</div>
 
-    <main>
-        <nav class="navigation">
-            <ul>
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Giới thiệu</a></li>
-                <li><a href="#">Nội quy</a></li>
-                <li><a href="#">Dịch vụ</a></li>
-                <li><a href="#">Bộ sưu tập</a></li>
-                <li><a href="#">Tin tức</a></li>
-            </ul>
-        </nav>
-
-        <div class="search-container">
-            <select class="search-category">
-                <option>All</option>
-                <option>Books</option>
-                <option>Journals</option>
-                <option>Media</option>
-                <!-- Add more options as needed -->
-            </select>
-            <input type="text" class="search-input" placeholder="Everything">
-            <button class="search-button">Search</button>
+<div class="container my-2">
+    <h2 class="text-center m-4">News & Events</h2>
+    <div class="row justify-content-evenly">
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Lịch mượn, nhận sách giáo trình học kỳ Fall 2024 tại FPTU – Hà Nội</h5>
+                    </a>
+                    <p class="card-text">Bạn đọc cần xem để nắm được quy định, thủ tục khi mượn, nhận sách tại thư viện…</p>
+                </div>
+            </div>
         </div>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2024 FPT University. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Thông báo tạm ngừng phục vụ dịp nghỉ hè 2024</h5>
+                    </a>
+                    <p class="card-text">Trong dịp nghỉ hè 2024, thư viện sẽ đóng cửa từ ngày 29/6/2024 đến hết ngày 7/7/2024…</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Ngày hội đổi sách 2023 - Điều gì đang chờ đón?</h5>
+                    </a>
+                    <p class="card-text">Bạn muốn lan tỏa những cuốn sách hay? Đừng bỏ lỡ Ngày hội đổi sách 2023 nhé…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="#" class="btn btn-link btn-primary text-white text-decoration-none">SEE MORE >></a>
+    </div>
+</div>

@@ -1,29 +1,41 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.RegularExpressions;
+using System.Text.Json;
+using BusinessLayer.Service.Interface;
+using BusinessLayer.Dtos;
+using FU_Library_Web.Utils;
+using DataAccess.Entity;
 
 namespace FU_Library_Web.Areas.Auth.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly DatabaseContext _databaseContext;
+        //private readonly DatabaseContext _databaseContext;
+        private readonly IUserService _userService;
 
-        public IndexModel(DatabaseContext databaseContext)
+        private readonly SessionUtils sessionUtils;
+
+        public IndexModel(IUserService userService)
         {
-            _databaseContext = databaseContext;
+            _userService = userService;
         }
+        //public IndexModel()
+        //{
 
+        //}
         [BindProperty]
         public string Password { get; set; }
 
         [BindProperty]
         public string Email { get; set; }
-
+        [BindProperty]
+        public LoginDto Login { get; set; }
         public void OnGet()
         {
         }
 
-        public async Task<IActionResult> OnPostTrinhLoginAsync()
+        public async Task<IActionResult> OnPostLoginAsync()
         {
             string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             Regex regex = new Regex(emailPattern);
@@ -34,19 +46,25 @@ namespace FU_Library_Web.Areas.Auth.Pages
                 return Page();
             }
 
-            if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
-            {
-                ModelState.AddModelError(nameof(Password), "Password must be at least 6 characters long.");
-                return Page();
-            }
+            //if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
+            //{
+            //    ModelState.AddModelError(nameof(Password), "Password must be at least 6 characters long.");
+            //    return Page();
+            //}
 
-            var userExist = _databaseContext.Users.Where(u => u.Email == Email && u.Password == Password);
-            if (userExist.Any())
+            var user = await _userService.Login(Login);
+            
+            if (user)
             {
-                return Redirect("/Home");
-            }
+              /*  sessionUtils.SetObjectInSession("UserSession", user);*/
 
+
+                return Redirect("/Home"); 
+            }
+            else
+            {
             ModelState.AddModelError(string.Empty, "Email or Password is incorrect.");
+            }
             return Page();
         }
     }

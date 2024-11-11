@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace FU_Library_Web.Models
+﻿namespace DataAccess.Entity
 {
-    public class User
+    public class Users
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid UserId { get; set; }
 
 		[Required]
@@ -32,13 +28,8 @@ namespace FU_Library_Web.Models
 
 		[ForeignKey("CampusId")]
 		[Required]
-		public Campus Campus { get; set; }
+		public Campuses Campus { get; set; }
 	}
 
-    public enum UserType
-    {
-        ADMIN,
-        MEMBER,
-        STAFF
-    }
+    
 }

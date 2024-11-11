@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace FU_Library_Web.Models
+﻿namespace DataAccess.Entity
 {
-	public class BorrowBook
+	public class BorrowBooks
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid BorrowBookId { get; set; }
 		public DateTime? ReturnDate { get; set; } 
 
@@ -18,14 +14,14 @@ namespace FU_Library_Web.Models
 
 		[ForeignKey("BookId")]
 		[Required]
-		public Book Book { get; set; }
+		public Books Book { get; set; }
 
 		[Required]
 		public Guid UserId { get; set; }
 
 		[ForeignKey("UserId")]
 		[Required]
-		public User User { get; set; }
+		public Users User { get; set; }
 
 		[Required]
 		public Guid RequestStatusId { get; set; }

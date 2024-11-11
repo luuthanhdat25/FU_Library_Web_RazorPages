@@ -1,22 +1,264 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.header-container {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+    .header-container img {
+        max-width: 200px;
+    }
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.language-login {
+    display: flex;
+    align-items: center;
+}
+
+    .language-login a {
+        color: #0870b7;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 5px;
+    }
+
+
+
+h1 {
+    color: #faae2d;
+    font-size: 46px;
+    margin: 10px 0;
+}
+
+p {
+    color: black;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.navigation {
+    height: 52px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    background-color: #faae2d;
+}
+
+    .navigation ul {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .navigation ul li:hover {
+            cursor: pointer;
+            background-color: #000;
+            transition: ease-in 0.2s;
+        }
+
+        .navigation ul li {
+            padding: 16.2px 15px 18px 15px;
+            display: inline;
+            margin-left: -4px;
+            font-weight: bold;
+        }
+
+            .navigation ul li a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+
+.main-wrapper {
+    background-image: url('/images/fpt-university.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-search {
+    background-color: rgba(255, 165, 0, 0.85);
+    padding: 21px;
+    border-radius: 49px;
+    width: 76%;
+}
+
+.main-search-block-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .main-search-block-content select,
+    .main-search-block-content input[type="search"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 32px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+        width: auto;
+    }
+
+    .main-search-block-content input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        border-radius: 32px;
+        cursor: pointer;
+    }
+
+        .main-search-block-content input[type="submit"]:hover {
+            background-color: #ff9933;
+        }
+
+.news-container {
+    min-height: calc(100vh - 200px);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 181, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img:hover {
+    filter: brightness(0.9);
+}
+
+
+/* Login */
+
+
+.login-form {
+    background-color: #fff;
+    padding: 77px 62px;
+    /* border-radius: 5px; */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+    height: 500px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-text {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.forgot-password {
+    margin: 20px;
+    color: #666;
+}
+
+    .forgot-password a {
+        color: #333;
+        text-decoration: none;
+    }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+.error-message {
+    background-color: #ff3f3f;
+    padding: 10px 13px;
+    color: #ffffff;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+    footer p {
+        color: #fff;
+    }

@@ -10,38 +10,30 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">FU_Library_Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-page="/Index">Test</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Auth" asp-page="/Login">Login</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="header-container">
+            <div class="logo">
+                <img src="~/images/logo.png" alt="FPT University Logo">
             </div>
+            <div class="welcome-info">
+                <h1>Welcome to <strong style="color: #f3030f;">FPT Library</strong> </h1>
+                <p>Open: 08:15 - 21:00 Weekday | 08:00 - 12:00 & 13:00 - 17:00 Weekend</p>
+            </div>
+            <div class="language-login">
+                <a href="/Auth/Login">Login</a> | <a href="#">Vietnamese</a>
+            </div>
+        </div>
+        <nav class="navigation">
+            <ul class="h-100">
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Nội quy</a></li>
+                <li><a href="#">Dịch vụ</a></li>
+                <li><a href="#">Bộ sưu tập</a></li>
+                <li><a href="#">Tin tức</a></li>
+            </ul>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
+    @RenderBody()
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - FU_Library_Web - <a asp-area="" asp-page="/Privacy">Privacy</a>

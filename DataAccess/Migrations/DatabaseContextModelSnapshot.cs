@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FU_Library_Web.Migrations
+namespace DataAccess.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot
@@ -17,12 +17,49 @@ namespace FU_Library_Web.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FU_Library_Web.Models.Book", b =>
+            modelBuilder.Entity("DataAccess.Entity.BookAuthors", b =>
+                {
+                    b.Property<Guid>("BookAuthorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("BookAuthorId");
+
+                    b.ToTable("BookAuthors");
+                });
+
+            modelBuilder.Entity("DataAccess.Entity.BookCategories", b =>
+                {
+                    b.Property<Guid>("BookCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("BookCategoryId");
+
+                    b.ToTable("BookCategories");
+                });
+
+            modelBuilder.Entity("DataAccess.Entity.Books", b =>
                 {
                     b.Property<Guid>("BookId")
                         .ValueGeneratedOnAdd()
@@ -51,8 +88,12 @@ namespace FU_Library_Web.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("PublicationYear")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("PublicationYear")
+                        .HasColumnType("date");
 
                     b.Property<string>("Publisher")
                         .IsRequired()
@@ -73,44 +114,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.BookAuthor", b =>
-                {
-                    b.Property<Guid>("BookAuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("BookAuthorId");
-
-                    b.ToTable("BookAuthors");
-                });
-
-            modelBuilder.Entity("FU_Library_Web.Models.BookCategory", b =>
-                {
-                    b.Property<Guid>("BookCategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("BookCategoryId");
-
-                    b.ToTable("BookCategories");
-                });
-
-            modelBuilder.Entity("FU_Library_Web.Models.BorrowBook", b =>
+            modelBuilder.Entity("DataAccess.Entity.BorrowBooks", b =>
                 {
                     b.Property<Guid>("BorrowBookId")
                         .ValueGeneratedOnAdd()
@@ -142,7 +146,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("BorrowBooks");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.Campus", b =>
+            modelBuilder.Entity("DataAccess.Entity.Campuses", b =>
                 {
                     b.Property<Guid>("CampusId")
                         .ValueGeneratedOnAdd()
@@ -163,7 +167,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("Campuses");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.ChatRoom", b =>
+            modelBuilder.Entity("DataAccess.Entity.ChatRooms", b =>
                 {
                     b.Property<Guid>("ChatRoomId")
                         .ValueGeneratedOnAdd()
@@ -179,7 +183,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("ChatRooms");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.Introduction", b =>
+            modelBuilder.Entity("DataAccess.Entity.Introductions", b =>
                 {
                     b.Property<Guid>("IntroductionId")
                         .ValueGeneratedOnAdd()
@@ -199,7 +203,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("Introductions");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.Message", b =>
+            modelBuilder.Entity("DataAccess.Entity.Messages", b =>
                 {
                     b.Property<Guid>("MessageId")
                         .ValueGeneratedOnAdd()
@@ -232,7 +236,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.News", b =>
+            modelBuilder.Entity("DataAccess.Entity.News", b =>
                 {
                     b.Property<Guid>("NewsId")
                         .ValueGeneratedOnAdd()
@@ -255,7 +259,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.RequestStatus", b =>
+            modelBuilder.Entity("DataAccess.Entity.RequestStatus", b =>
                 {
                     b.Property<Guid>("RequestStatusId")
                         .ValueGeneratedOnAdd()
@@ -271,7 +275,7 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("RequestStatuses");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.User", b =>
+            modelBuilder.Entity("DataAccess.Entity.Users", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -308,15 +312,15 @@ namespace FU_Library_Web.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.Book", b =>
+            modelBuilder.Entity("DataAccess.Entity.Books", b =>
                 {
-                    b.HasOne("FU_Library_Web.Models.BookAuthor", "BookAuthor")
+                    b.HasOne("DataAccess.Entity.BookAuthors", "BookAuthor")
                         .WithMany()
                         .HasForeignKey("BookAuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FU_Library_Web.Models.BookCategory", "BookCategory")
+                    b.HasOne("DataAccess.Entity.BookCategories", "BookCategory")
                         .WithMany()
                         .HasForeignKey("BookCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -327,21 +331,21 @@ namespace FU_Library_Web.Migrations
                     b.Navigation("BookCategory");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.BorrowBook", b =>
+            modelBuilder.Entity("DataAccess.Entity.BorrowBooks", b =>
                 {
-                    b.HasOne("FU_Library_Web.Models.Book", "Book")
+                    b.HasOne("DataAccess.Entity.Books", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FU_Library_Web.Models.RequestStatus", "RequestStatus")
+                    b.HasOne("DataAccess.Entity.RequestStatus", "RequestStatus")
                         .WithMany()
                         .HasForeignKey("RequestStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FU_Library_Web.Models.User", "User")
+                    b.HasOne("DataAccess.Entity.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -354,24 +358,24 @@ namespace FU_Library_Web.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.Message", b =>
+            modelBuilder.Entity("DataAccess.Entity.Messages", b =>
                 {
-                    b.HasOne("FU_Library_Web.Models.ChatRoom", "ChatRoom")
+                    b.HasOne("DataAccess.Entity.ChatRooms", "ChatRoom")
                         .WithMany()
                         .HasForeignKey("ChatRoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FU_Library_Web.Models.User", "FromUser")
+                    b.HasOne("DataAccess.Entity.Users", "FromUser")
                         .WithMany()
                         .HasForeignKey("FromUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FU_Library_Web.Models.User", "ToUser")
+                    b.HasOne("DataAccess.Entity.Users", "ToUser")
                         .WithMany()
                         .HasForeignKey("ToUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ChatRoom");
@@ -381,9 +385,9 @@ namespace FU_Library_Web.Migrations
                     b.Navigation("ToUser");
                 });
 
-            modelBuilder.Entity("FU_Library_Web.Models.User", b =>
+            modelBuilder.Entity("DataAccess.Entity.Users", b =>
                 {
-                    b.HasOne("FU_Library_Web.Models.Campus", "Campus")
+                    b.HasOne("DataAccess.Entity.Campuses", "Campus")
                         .WithMany()
                         .HasForeignKey("CampusId")
                         .OnDelete(DeleteBehavior.Cascade)

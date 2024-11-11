@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace FU_Library_Web.Models
+﻿namespace DataAccess.Entity
 {
 	public class News
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid NewsId { get; set; }
 
 		[Required]
