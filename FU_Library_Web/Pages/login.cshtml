@@ -1,0 +1,136 @@
+﻿@page
+@model FU_Library_Web.Pages.loginModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<style>
+    /* Style for the login box container */
+    .login-box {
+        width: 300px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #f4f4f4; /* Light gray background */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-box-body {
+        padding: 20px;
+    }
+
+    /* Heading style */
+    .login-box-msg {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    /* Input field styles */
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+    /* Button style */
+    .btn {
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+    /* Link style */
+    .text-center a {
+        font-size: 14px;
+    }
+
+    /* Captcha error message */
+    .captcha-error {
+        display: none;
+        color: red;
+        font-size: 12px;
+    }
+</style>
+
+<div class="login-box">
+    <div class="login-box-body">
+        <p class="login-box-msg">Vui lòng đăng nhập</p>
+
+        <form method="post">
+            <div class="form-group">
+                <input class="form-control" type="text" id="Username" name="Username" placeholder="Tên đăng nhập" required />
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" id="Password" name="Password" placeholder="Mật khẩu" required />
+            </div>
+            <div class="form-group">
+                <div id="divCaptcha"></div>
+                <span class="text-danger captcha-error">Mã bảo mật không được phép để trống</span>
+                <input id="GoogleCaptchaToken" name="GoogleCaptchaToken" type="hidden" />
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Đăng nhập</button>
+            <p class="text-center" style="font-size: 16px; margin-top: 20px;">
+                <a href="@Url.Page("/ForgotPassword")">
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i> Bạn quên mật khẩu?
+                </a>
+            </p>
+            <p class="text-center" style="font-size: 16px; margin-top: 10px;">
+                <a href="/" class="btn btn-lg btn-warning btn-block">
+                    Về trang chủ
+                </a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    var onCaptchaCallback = function () {
+        grecaptcha.render('divCaptcha', {
+            'sitekey': 'YOUR_SITE_KEY',
+            'theme': 'light',
+            'callback': function (token) {
+                document.getElementById('GoogleCaptchaToken').value = token;
+            }
+        });
+    };
+
+    function checkCaptcha() {
+        var res = document.getElementById('GoogleCaptchaToken').value;
+
+        if (!res) {
+            document.querySelector('.captcha-error').style.display = 'block';
+            return false;
+        } else {
+            document.querySelector('.captcha-error').style.display = 'none';
+            return true;
+        }
+    }
+</script>

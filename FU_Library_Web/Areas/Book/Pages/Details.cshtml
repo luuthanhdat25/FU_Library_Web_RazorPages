@@ -3,280 +3,113 @@
 @{
     ViewData["Title"] = "Book Detail";
 }
+<div class="divProcessing" style="display: none;"></div>
+
 <style>
-    /* Basic layout for main container */
     .main-container {
-        padding: 20px;
-        background-color: #f4f4f4;
+        background: #FFF;
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    /* Styling for book details section */
-    .opac-search-detail-header {
-        padding: 10px 0;
-        border-bottom: 2px solid #ddd;
-    }
-
-        .opac-search-detail-header h3.title {
-            font-size: 24px;
-            color: #FFA500; /* Màu cam là màu chủ đạo */
-            margin-bottom: 10px;
-        }
-
-    .share-social {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .fb-like, .fb-share-button {
-        margin-left: 10px;
-    }
-
-    /* Styling for book image */
-    .book-image img {
-        width: 150px;
-        height: 200px;
-        object-fit: cover;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    /* Book title and details section */
     .book-title {
-        font-size: 28px;
-        color: #FFA500; /* Màu cam cho tiêu đề */
+        font-size: 18px;
         font-weight: bold;
-        margin-top: 15px;
-    }
-
-    .separate {
-        margin-top: 15px;
-    }
-
-    .book-content-tablink-block {
-        margin-top: 20px;
-    }
-
-    /* Detail row styling */
-    .book-item-detail {
-        margin-bottom: 15px;
-    }
-
-        .book-item-detail .col-md-5 {
-            font-weight: bold;
-            color: #FFA500; /* Màu cam cho các nhãn */
-        }
-
-        .book-item-detail .col-md-7 {
-            color: #333; /* Màu chữ mặc định */
-        }
-
-    /* Borrowing section */
-    .opac-detail-book-borrowing {
-        margin-top: 30px;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-        .opac-detail-book-borrowing h3.title {
-            font-size: 22px;
-            color: #FFA500; /* Màu cam cho tiêu đề phần mượn sách */
-            margin-bottom: 15px;
-        }
-
-    .book-content-shelf p {
-        font-size: 16px;
-        margin: 5px 0;
-    }
-
-    .book-content-shelf b {
         color: #333;
     }
 
-    .book-content-shelf i {
-        margin-right: 5px;
+    .book-content-detail {
+        font-size: 14px;
+        margin-top: 10px;
     }
 
-    .book-content-shelf .fa-circle {
-        margin-right: 5px;
+    .btnTab {
+        border: 1px solid #faae2d;
+        color: #486195;
+        font-weight: bold;
     }
-
-    .book-content-shelf a {
-        color: #FFA500; /* Màu cam cho liên kết */
-        text-decoration: none;
-    }
-
-        .book-content-shelf a:hover {
-            text-decoration: underline;
-        }
-
-    /* Buttons with orange color */
-    button, .btn, .btn-primary {
-        background-color: #FFA500; /* Màu cam cho nút */
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-        button:hover, .btn:hover, .btn-primary:hover {
-            background-color: #e68a00; /* Màu cam tối khi hover */
-        }
-
 </style>
+
+<script>
+    function openLink(evt, animName) {
+        var x = document.getElementsByClassName("thing");
+        for (let item of x) {
+            item.style.display = "none";
+        }
+        let tablinks = document.getElementsByClassName("tablink");
+        for (let link of tablinks) {
+            link.classList.remove("w3-white");
+        }
+        document.getElementById(animName).style.display = "block";
+        evt.currentTarget.classList.add("w3-white");
+    }
+</script>
 
 <div class="main-container">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
                 <div class="opac-search-detail">
-                    <div class="opac-search-detail-header">
-                        <h3 class="title">
-                            <span>Thông tin chi tiết sách</span>
-                        </h3>
-
-                        <div class="share-social" style="float: right; margin-top: 10px;">
-                            <div class="fb-like" data-href="http://library.fpt.edu.vn/NewMaterial/Detail?detail_id=20588" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>
-                            <div style="margin-right: 5px;" class="fb-share-button" data-href='http://library.fpt.edu.vn/NewMaterial/Detail?detail_id=20588' data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flibolhanoitest.fpt.edu.vn%2FOPAC%2FNews%2FDetail%2F8&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
-                        </div>
-
-                        <div class="clear"></div>
+                    <h3 class="title"><span>Thông tin chi tiết sách</span></h3>
+                    <div class="book-content-tablink">
+                        <button class="btnTab" onclick="openLink(event, 'BOOK_CONTENT_DETAIL')">Hiển thị đầy đủ</button>
+                        <button class="btnTab" onclick="openLink(event, 'BOOK_CONTENT_MARC')">Hiển thị MARC</button>
                     </div>
 
-                    <div class="opac-search-detail-block">
-                        <div class="col-md-3">
-                            <div class="book-image">
-                                <img src="'../Content/Images/NoImage.png'" width="150" height="200" alt="Ảnh đại diện" />
-                            </div>
+                    <div class="row">
+                        @* <div class="col-md-3">
+                            <img src="@Model.ImageUrl" width="150" height="200" alt="Ảnh đại diện" />
                         </div>
-
                         <div class="col-md-9">
-                            <h2 class="book-title">
-                                Title
-                            </h2>
-                            <p class="separate"></p>
-
-                            <div class="book-content-tablink-block">
-                                <div class="tab-content">
-                                    <div class="tab-pane active in" id="BOOK_CONTENT_DETAIL">
-                                        <div class="book-content-detail">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="row book-item-detail">
-                                                            <div class="col-md-5">ISBN</div>
-                                                            <div class="col-md-7">
-                                                                ISBN
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row book-item-detail">
-                                                            <div class="col-md-5">Lần xuất bản</div>
-                                                            <div class="col-md-7">
-                                                                Lần xuất bản
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row book-item-detail">
-                                                            <div class="col-md-5">Mã xếp giá</div>
-                                                            <div class="col-md-7">
-                                                                <a href="@Url.Page("/SearchBook", new { keyword = 'a' })" class="aLinkFunction">
-                                                                    Mã xếp giá
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row book-item-detail">
-                                                            <div class="col-md-5">Tên tác giả</div>
-                                                            <div class="col-md-7">
-                                                                Tên tác giả
-                                                            </div>
-                                                        </div>
-                                                        <div class="row book-item-detail">
-                                                            <div class="col-md-5">Nhà xuất bản</div>
-                                                            <div class="col-md-7">
-                                                                Nhà xuất bản
-                                                            </div>
-                                                        </div>
-                                                        <div class="row book-item-detail">
-                                                            <div class="col-md-5">Năm phát hành</div>
-                                                            <div class="col-md-7">
-                                                                Năm phát hành
-                                                            </div>
-                                                        </div>
-                                                        <div class="row book-item-detail">
-                                                            <div class="col-md-5">Mô tả vật lý</div>
-                                                            <div class="col-md-7">
-                                                                Mô tả vật lý
-                                                            </div>
-                                                        </div>
-
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <h2 class="book-title">@Model.Book.Title</h2>
+                            <div id="BOOK_CONTENT_DETAIL" class="book-content-detail thing" style="display: block;">
+                                <div class="row">
+                                    <div class="col-md-5">ISBN</div>
+                                    <div class="col-md-7">@Model.Book.ISBN</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Edition</div>
+                                    <div class="col-md-7">@Model.Book.Edition</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Publisher</div>
+                                    <div class="col-md-7">@Model.Book.Publisher</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Publication Year</div>
+                                    <div class="col-md-7">@Model.Book.PublicationYear.Year</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Description</div>
+                                    <div class="col-md-7">@Model.Book.Description</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Availability Status</div>
+                                    <div class="col-md-7">@Model.Book.AvailabilityStatus ? "Available" : "Not Available"</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Author</div>
+                                    <div class="col-md-7">@Model.Book.BookAuthor?.Name</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Category</div>
+                                    <div class="col-md-7">@Model.Book.BookCategory?.CategoryName</div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="clearfix"></div>
-                        <p class="separate"></p>
-
-                        <div class="opac-detail-book-borrowing">
-                            <h3 class="title">
-                                <span>Đăng ký mượn</span>
-                            </h3>
-                            <div class="clear"></div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="book-content-shelf">
-                                                <p>
-                                                    <b>
-                                                        <i class="fa fa-circle" aria-hidden="true" style="color: green"></i> FSC123 HNA: TK/TKHN
-                                                    </b>
-                                                    Tổng: <span><b>2</b></span>
-                                                    Rỗi: <span><b style="color: green">2</b></span>
-                                                    Bận: <span><b style="color: red">0</b></span>
-                                                </p>
-                                                <p>
-                                                    Tổng số bản: <b>2</b>&nbsp;&nbsp;
-                                                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                                                    <span>&nbsp;<a href="#book-detail-modal" data-toggle="modal" data-dismiss="modal" style="color: blue; font-weight: bold">Chi tiết</a></span>
-                                                </p>
-                                                <p>
-                                                    Số bản rỗi: <b style="color: green">2</b>
-                                                </p>
-                                                <p>
-                                                    Số bạn đọc đang đặt mượn: <b>0</b>&nbsp;&nbsp;
-                                                    <a href="@Url.Page("/Auth/LogIn", new { ReturnUrl = Request.Path })" class="btn btn-primary">
-                                                        <b>Đặt mượn sách</b>
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                    </div>
-                                </div>
+                            <div id="BOOK_CONTENT_MARC" class="book-content-marc thing" style="display: none;">
+                                <p class="book-content-marc">MARC data placeholder</p>
                             </div>
+                        </div> *@
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                     @*        <div class="book-content-shelf">
+                                <p>Total Copies: <b>@Model.TotalCopies</b></p>
+                                <p>Available Copies: <b style="color: green">@Model.AvailableCopies</b></p>
+                            </div> *@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <!-- Optional Sidebar -->
             </div>
         </div>
     </div>
