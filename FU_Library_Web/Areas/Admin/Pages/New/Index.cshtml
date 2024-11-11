@@ -1,0 +1,61 @@
+﻿@page
+@model FU_Library_Web.Areas.Admin.Pages.New.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="text-center">
+<h1>List News Of Library</h1>
+</div>
+<p>
+    <a class="btn btn-danger" asp-area="Admin" asp-page="/New/Create">Create A News</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.News[0].PublishDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.News)
+        {
+            <tr>
+                <td>
+                    <a asp-area="Admin" asp-page="/New/Details" asp-route-id="@item.NewsId">
+                    @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-area="Admin" asp-page="/New/Edit" asp-route-id="@item.NewsId">Edit</a>
+                    <form method="post" asp-page-handler="Delete" id="deleteForm-@item.NewsId" style="display: inline;">
+                        <a href="javascript:void(0);" class="btn btn-danger"
+                           onclick="confirmDelete('@item.NewsId')">Delete</a>
+                        <input type="hidden" name="id" value="@item.NewsId" />
+                    </form>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function confirmDelete(formId) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            document.getElementById('deleteForm-' + formId).submit();
+        }
+    }
+</script>
