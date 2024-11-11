@@ -17,8 +17,8 @@ namespace FU_Library_Web
 		public DbSet<News> News { get; set; }
 		public DbSet<RequestStatus> RequestStatuses { get; set; }
 		public DbSet<User> Users { get; set; }
-
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)
 			{
