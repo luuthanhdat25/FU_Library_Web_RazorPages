@@ -1,6 +1,4 @@
-using DataAccess;
 using DataAccess.Repository.Interface;
-using FU_Library_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,7 +6,6 @@ namespace FU_Library_Web.Areas.News.Pages
 {
     public class CreateModel : PageModel
     {
-
         private readonly INewsRepository _newRepository;
         public string message { get; set; }
         

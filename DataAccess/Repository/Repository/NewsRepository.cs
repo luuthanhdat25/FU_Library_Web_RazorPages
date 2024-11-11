@@ -18,7 +18,7 @@ namespace DataAccess
 
         public NewsRepository()
         {
-            _context = new DatabaseContext();
+            /*_context = new DatabaseContext();*/
         }
 
         public NewsRepository(DatabaseContext context)
