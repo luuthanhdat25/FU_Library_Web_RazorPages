@@ -1,12 +1,10 @@
-using FU_Library_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FU_Library_Web.Areas.Book.Pages
+namespace FU_Library_Web.Areas.BorrowBook
 {
-    public class DetailsModel : PageModel
+    public class IndexModel : PageModel
     {
-
         public void OnGet()
         {
         }

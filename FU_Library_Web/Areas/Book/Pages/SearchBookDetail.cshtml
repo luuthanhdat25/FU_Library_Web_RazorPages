@@ -1,0 +1,75 @@
+﻿@page
+@model FU_Library_Web.Areas.Book.Pages.SearchBookDetailModel
+@{
+}
+<div class="wrapper">
+        <div class="divProcessing" style="display:none;"></div>
+
+        <div class="main-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="opac-search">
+                            <h3 class="title">
+                                <span>Sách mới trong tháng</span>
+                            </h3>
+
+                            <form method="get" asp-page="NewBooks" onsubmit="return validateForm()">
+                                <div class="form-horizontal">
+                                    <div class="opac-search-filter">
+                                        <div class="opac-search-filter-content">
+                                            <div class="form-row">
+                                                <div class="col-md-5">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label"><strong>Thư viện</strong></label>
+                                                            @* 
+                                                            <select name="libFilter" id="libFilter" class="slFilter form-control">
+                                                                <option value="0" selected="selected">----- Tất cả thư viện ----</option>
+                                                                @foreach (var library in Model.Libraries) 
+                                                                {
+                                                                    <option value="@library.Id">@library.Name</option>
+                                                                }
+                                                            </select>
+                                                            *@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="txtSearch">Tìm kiếm</label>
+                                                <input type="text" class="form-control" id="txtSearch" name="txtSearch" placeholder="Tìm sách..." />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="btnSearch" class="btn btn-primary">Tìm kiếm</button>
+                                    <button type="button" id="btnAdvancedSearch" class="btn btn-secondary">Tìm kiếm nâng cao</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="opac-search-result">
+                            <h3 class="title">Kết quả tìm kiếm</h3>
+                              @* @foreach (var book in Model.NewBooks) 
+                              {
+                                  <div class="opac-search-result-item">
+                                      <div class="book-cover">
+                                          <img src="@book.CoverImageUrl" alt="@book.Title" />
+                                      </div>
+                                      <div class="book-detail">
+                                          <div class="title">@book.Title</div>
+                                          <div class="author">@book.Author</div>
+                                          <a href="@book.DetailPageUrl" class="readmore">Xem thêm</a>
+                                      </div>
+                                  </div>
+                              } *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

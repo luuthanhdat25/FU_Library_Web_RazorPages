@@ -2,3 +2,114 @@
 @model FU_Library_Web.Areas.Book.Pages.DetailsModel
 @{
 }
+<div class="divProcessing" style="display: none;"></div>
+
+<style>
+    .main-container {
+        background: #FFF;
+    }
+
+    .book-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .book-content-detail {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .btnTab {
+        border: 1px solid #faae2d;
+        color: #486195;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    function openLink(evt, animName) {
+        var x = document.getElementsByClassName("thing");
+        for (let item of x) {
+            item.style.display = "none";
+        }
+        let tablinks = document.getElementsByClassName("tablink");
+        for (let link of tablinks) {
+            link.classList.remove("w3-white");
+        }
+        document.getElementById(animName).style.display = "block";
+        evt.currentTarget.classList.add("w3-white");
+    }
+</script>
+
+<div class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="opac-search-detail">
+                    <h3 class="title"><span>Thông tin chi tiết sách</span></h3>
+                    <div class="book-content-tablink">
+                        <button class="btnTab" onclick="openLink(event, 'BOOK_CONTENT_DETAIL')">Hiển thị đầy đủ</button>
+                        <button class="btnTab" onclick="openLink(event, 'BOOK_CONTENT_MARC')">Hiển thị MARC</button>
+                    </div>
+
+                    <div class="row">
+                        @* <div class="col-md-3">
+                            <img src="@Model.ImageUrl" width="150" height="200" alt="Ảnh đại diện" />
+                        </div>
+                        <div class="col-md-9">
+                            <h2 class="book-title">@Model.Book.Title</h2>
+                            <div id="BOOK_CONTENT_DETAIL" class="book-content-detail thing" style="display: block;">
+                                <div class="row">
+                                    <div class="col-md-5">ISBN</div>
+                                    <div class="col-md-7">@Model.Book.ISBN</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Edition</div>
+                                    <div class="col-md-7">@Model.Book.Edition</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Publisher</div>
+                                    <div class="col-md-7">@Model.Book.Publisher</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Publication Year</div>
+                                    <div class="col-md-7">@Model.Book.PublicationYear.Year</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Description</div>
+                                    <div class="col-md-7">@Model.Book.Description</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Availability Status</div>
+                                    <div class="col-md-7">@Model.Book.AvailabilityStatus ? "Available" : "Not Available"</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Author</div>
+                                    <div class="col-md-7">@Model.Book.BookAuthor?.Name</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">Category</div>
+                                    <div class="col-md-7">@Model.Book.BookCategory?.CategoryName</div>
+                                </div>
+                            </div>
+
+                            <div id="BOOK_CONTENT_MARC" class="book-content-marc thing" style="display: none;">
+                                <p class="book-content-marc">MARC data placeholder</p>
+                            </div>
+                        </div> *@
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                     @*        <div class="book-content-shelf">
+                                <p>Total Copies: <b>@Model.TotalCopies</b></p>
+                                <p>Available Copies: <b style="color: green">@Model.AvailableCopies</b></p>
+                            </div> *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

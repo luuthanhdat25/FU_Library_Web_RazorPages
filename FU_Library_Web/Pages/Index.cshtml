@@ -1,11 +1,106 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Trang chủ";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <a asp-page="/Create" asp-area="Book">Create Book</a>
+<style>
+    .main-search {
+        background-color: rgba(255, 165, 0, 0.8); /* Màu cam nhạt với opacity 80% */
+        padding: 15px 20px;
+        border-radius: 8px; /* Thêm bo tròn cho góc */
+        display: flex; /* Dùng flex để căn chỉnh các phần tử nằm ngang */
+        justify-content: space-between; /* Căn chỉnh các phần tử ở giữa */
+        align-items: center; /* Căn chỉnh phần tử dọc */
+        flex-wrap: wrap; /* Cho phép các phần tử xuống dòng nếu không đủ chỗ */
+        width: 100%; /* Đảm bảo phần tìm kiếm không vượt ra ngoài */
+    }
+
+    /* Phần tìm kiếm nằm ngang với các phần tử căn chỉnh bên cạnh nhau */
+    .main-search-block-content form {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+    }
+
+    .select-options {
+        margin-right: 10px; /* Khoảng cách giữa dropdown và input */
+    }
+
+    /* Nút Search với nền cam đậm và chữ màu trắng */
+    #btnSearch {
+        background-color: #FFA500; /* Màu cam đậm */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px; /* Thêm bo tròn cho góc nút */
+    }
+
+        /* Thay đổi màu nút khi hover */
+        #btnSearch:hover {
+            background-color: #FF8C00; /* Thay đổi màu cam khi hover */
+        }
+
+    /* Tùy chỉnh input search cho đẹp hơn */
+    #txtSearch {
+        padding: 8px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #FFA500; /* Thêm viền màu cam */
+        margin-right: 10px; /* Khoảng cách giữa input và nút */
+    }
+
+    /* Các liên kết (Advanced Search, Request material, etc.) */
+    .main-search-block-content a {
+        color: white; /* Màu chữ trắng */
+        font-size: 15px;
+        text-decoration: none;
+    }
+
+        /* Tăng khoảng cách giữa các liên kết */
+        .main-search-block-content a + span {
+            margin-left: 10px;
+            margin-right: 10px;
+            border-right: 2px solid white;
+        }
+</style>
+
+<div class="container">
+
+    <div class="main-wrapper">
+        <!-- Search -->
+        <div class="main-search">
+            <div class="main-search-block-content">
+                <form method="get" action="https://library.fpt.edu.vn/SearchBook" onsubmit="return validateForm()">
+                    <div class="select-options">
+                        <select name="options" id="slOptions">
+                            <option value="0" selected="selected">All</option>
+                            <option value="1">Title</option>
+                            <option value="2">Author</option>
+                            <option value="3">Publisher</option>
+                            <option value="4">DDC</option>
+                            <option value="5">Language</option>
+                            <option value="6">Keyword</option>
+                            <option value="7">Subject</option>
+                            <option value="8">ISBN</option>
+                        </select>
+                    </div>
+                    <input type="search" id="txtSearch" name="keyword" size="100" placeholder="Everything" autocomplete="off" />
+                    <input type="submit" id="btnSearch" value="Search" />
+                </form>
+                <div class="main-search-links">
+                    <a style="color: white;" href='AdvancedSearchBook.html' target="_blank">Advanced Search</a>
+                    <span></span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO8zgKNu7i9hpbeyj5fKdnMIFk483_iDJsqWJSQ6DtUmhh6A/viewform" target="_blank">Request material</a>
+                    <span></span>
+                    <a target="_blank" href='NewMaterialace3.html?libFilter=0&amp;monthFilter=11&amp;yearFilter=2024'>New material</a>
+                    <span></span>
+                    <a target="_blank" href='ReadALot.html'>Read a lot</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
