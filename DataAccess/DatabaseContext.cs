@@ -6,6 +6,7 @@ namespace FU_Library_Web
 {
 	public class DatabaseContext : DbContext
 	{
+
 		public DbSet<Book> Books { get; set; }
 		public DbSet<BookAuthor> BookAuthors { get; set; }
 		public DbSet<BookCategory> BookCategories { get; set; }
@@ -17,8 +18,13 @@ namespace FU_Library_Web
 		public DbSet<News> News { get; set; }
 		public DbSet<RequestStatus> RequestStatuses { get; set; }
 		public DbSet<User> Users { get; set; }
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DatabaseContext()
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			if (!optionsBuilder.IsConfigured)
 			{
