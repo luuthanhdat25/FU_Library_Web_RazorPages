@@ -1,4 +1,4 @@
-using FU_Library_Web.Models;
+using DataAccess.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +15,7 @@ namespace FU_Library_Web.Areas.Admin.Pages.Category
         }
 
         [BindProperty]
-        public BookCategory BookCategory { get; set; } = default!;
+        public BookCategories BookCategory { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

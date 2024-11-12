@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FU_Library_Web;
-using FU_Library_Web.Models;
+using DataAccess.Entity;
 
 namespace FU_Library_Web.Pages.Authobook
 {
@@ -19,7 +19,7 @@ namespace FU_Library_Web.Pages.Authobook
             _context = context;
         }
 
-        public BookAuthor BookAuthor { get; set; } = default!;
+        public BookAuthors BookAuthor { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

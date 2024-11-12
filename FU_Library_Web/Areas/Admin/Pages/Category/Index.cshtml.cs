@@ -1,4 +1,4 @@
-using FU_Library_Web.Models;
+using DataAccess.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +14,7 @@ namespace FU_Library_Web.Areas.Admin.Pages.Category
             _context = context;
         }
 
-        public IList<BookCategory> BookCategory { get; set; } = default!;
+        public IList<BookCategories> BookCategory { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -30,7 +30,7 @@ namespace FU_Library_Web.Areas.Admin.Pages.Category
             }
             else
             {
-                BookCategory newCate = new BookCategory
+                BookCategories newCate = new BookCategories
                 {
                     Name = cateName,
                 };
