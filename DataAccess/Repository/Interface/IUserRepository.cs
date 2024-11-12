@@ -8,5 +8,6 @@ namespace DataAccess.Repository.Interface
 {
     public interface IUserRepository : IGenericRepository<Users>
     {
+        public Task<(bool IsValid, Users? Account)> ValidateUserAsync(string email, string password);
     }
 }
