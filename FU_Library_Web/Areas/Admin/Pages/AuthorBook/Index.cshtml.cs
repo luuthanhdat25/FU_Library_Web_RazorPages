@@ -10,25 +10,25 @@ namespace FU_Library_Web.Areas.Admin.Pages.AuthorBook
 {
     public class IndexModel : PageModel
     {
-        //private readonly FU_Library_Web.DatabaseContext _context;
-        private readonly IBookAuthorRepository _bookAuthorRepository;
+        private readonly FU_Library_Web.DatabaseContext _context;
+        //private readonly IBookAuthorRepository _bookAuthorRepository;
 
-        /*public IndexModel(FU_Library_Web.DatabaseContext context)
+        public IndexModel(FU_Library_Web.DatabaseContext context)
         {
             _context = context;
-        }*/
+        }
 
-        public IndexModel(IBookAuthorRepository bookAuthorRepository)
+       /* public IndexModel(IBookAuthorRepository bookAuthorRepository)
         {
             _bookAuthorRepository = bookAuthorRepository;
-        }
+        }*/
 
         public IList<BookAuthors> BookAuthor { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            //BookAuthor = await _context.BookAuthors.ToListAsync();
-            BookAuthor = await _bookAuthorRepository.GetAll();
+            BookAuthor = await _context.BookAuthors.ToListAsync();
+            //BookAuthor = await _bookAuthorRepository.GetAll();
         }
         public async Task<IActionResult> OnPostCreateAsync(string? authorName, string? authorDes)
         {

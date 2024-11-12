@@ -10,65 +10,6 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <ul>
-                    <li><a href="/">Trang chủ</a></li>
-                    <li><a asp-area="Auth" asp-page="/login">Đăng nhập</a></li>
-                </ul>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li><a asp-area="" asp-page="/Chat/Index">Chat</a></li>
-
-                        <!-- Tin tức -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                Tin tức
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/New/Index">Tin hoạt động</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Tác giả -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="authorDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                Tác giả
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="authorDropdown">
-                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/Authorbook/Index">Danh sách tác giả</a></li>
-                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/Category/Index">Tạo tác giả</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Loại sách -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="bookCategoryDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                Loại sách
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="bookCategoryDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-page="/Cate/Index">Danh sách loại sách</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-page="/Cate/Create">Tạo loại sách</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- Sách -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="bookDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                Sách
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="bookDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-page="/Book/Index">Danh sách sách</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-page="/Book/Create">Tạo sách</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
         <div class="header-container">
             <div class="logo">
                 <a href="/">
@@ -86,23 +27,24 @@
         <nav class="navigation">
             <ul class="h-100">
                 <li><a href="/">Trang chủ</a></li>
-                <li style="position: relative"><a href="#">Tin tức</a>
+                <li style="position: relative">
+                    <a href="#">Tin tức</a>
                     <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/TestNews/Index">Tin hoạt động</a></li>
+                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/New/Index">Tin hoạt động</a></li>
                     </ul>
                 </li>
                 <li style="position: relative">
                     <a href="#">Tác giả</a>
                     <ul class="dropdown-menu" aria-labelledby="authorDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Index">Danh sách tác giả</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Create">Tạo tác giả</a></li>
+                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/Authorbook/Index">Danh sách tác giả</a></li>
+                        @* <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Create">Tạo tác giả</a></li> *@
                     </ul>
                 </li>
                 <li style="position: relative">
                     <a href="#">Loại sách</a>
                     <ul class="dropdown-menu" aria-labelledby="bookCategoryDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Cate/Index">Danh sách loại sách</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Cate/Create">Tạo loại sách</a></li>
+                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/Category/Index">Danh sách loại sách</a></li>
+                        @* <li><a class="dropdown-item" asp-area="Admin" asp-page="/Category/Create">Tạo loại sách</a></li> *@
                     </ul>
                 </li>
                 <li style="position: relative">
@@ -128,12 +70,11 @@
             margin: 0;
             color: #000;
             list-style: none;
-            z-index: 1; 
+            z-index: 1;
         }
 
         .navigation li:hover > ul.dropdown-menu {
             display: block;
-
         }
     </style>
     @RenderBody()
