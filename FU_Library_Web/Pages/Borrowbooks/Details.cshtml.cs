@@ -28,7 +28,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return NotFound();
             }
 
-            var borrowbook = await _context.BorrowBooks.FirstOrDefaultAsync(m => m.BorrowBookId == id);
+            var borrowbook = await _context.BorrowBooks.Include(it => it.User).Include(it =>it.RequestStatus).Include(it => it.Book).FirstOrDefaultAsync(m => m.BorrowBookId == id);
             if (borrowbook == null)
             {
                 return NotFound();

@@ -36,7 +36,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return NotFound();
             }
             BorrowBook = borrowbook;
-           ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Description");
+           ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Title");
            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName");
            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
             return Page();
