@@ -1,26 +1,4 @@
 ﻿@page
-@model FU_Library_Web.Areas.News.Pages.CreateModel
+@model FU_Library_Web.Areas.New.Pages.CreateModel
 @{
-    var newsInformation = Model.news;
 }
-<form method="post">
-    <div class="form-group">
-        <label asp-for="@newsInformation.Title"></label>
-        <input asp-for="@newsInformation.Title" class="form-control" />
-        <span asp-validation-for="@newsInformation.Title" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@newsInformation.Content"></label>
-        <textarea asp-for="@newsInformation.Content" class="form-control"></textarea>
-        <span asp-validation-for="@newsInformation.Content" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@newsInformation.PublishDate"></label>
-        <input asp-for="@newsInformation.PublishDate" class="form-control" />
-        <span asp-validation-for="@newsInformation.PublishDate" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Add News</button>
-</form>

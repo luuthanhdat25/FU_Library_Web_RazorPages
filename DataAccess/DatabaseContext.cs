@@ -1,8 +1,4 @@
-﻿using FU_Library_Web.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-
-namespace FU_Library_Web
+﻿namespace FU_Library_Web
 {
 	public class DatabaseContext : DbContext
 	{
@@ -39,28 +35,21 @@ namespace FU_Library_Web
 			}
 		}
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
-		{
-			modelBuilder.Entity<Message>()
-				.HasOne(m => m.ChatRoom)
-				.WithMany()
-				.HasForeignKey(m => m.ChatRoomId)
-				.OnDelete(DeleteBehavior.Restrict); 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Defining primary keys
+            modelBuilder.Entity<Books>().HasKey(b => b.BookId);
+            modelBuilder.Entity<BookAuthors>().HasKey(ba => ba.BookAuthorId);
+            modelBuilder.Entity<BookCategories>().HasKey(bc => bc.BookCategoryId);
+            modelBuilder.Entity<BorrowBooks>().HasKey(bb => bb.BorrowBookId);
+            modelBuilder.Entity<Campuses>().HasKey(c => c.CampusId);
+            modelBuilder.Entity<ChatRooms>().HasKey(cr => cr.ChatRoomId);
+            modelBuilder.Entity<Introductions>().HasKey(i => i.IntroductionId);
+            modelBuilder.Entity<Messages>().HasKey(m => m.MessageId);
+            modelBuilder.Entity<News>().HasKey(n => n.NewsId);
+            modelBuilder.Entity<RequestStatus>().HasKey(rs => rs.RequestStatusId);
+            modelBuilder.Entity<Users>().HasKey(u => u.UserId);
+        }
 
-			modelBuilder.Entity<Message>()
-				.HasOne(m => m.FromUser)
-				.WithMany()
-				.HasForeignKey(m => m.FromUserId)
-				.OnDelete(DeleteBehavior.Restrict); 
-
-			modelBuilder.Entity<Message>()
-				.HasOne(m => m.ToUser)
-				.WithMany()
-				.HasForeignKey(m => m.ToUserId)
-				.OnDelete(DeleteBehavior.Restrict); 
-		}
-
-
-
-	}
+    }
 }

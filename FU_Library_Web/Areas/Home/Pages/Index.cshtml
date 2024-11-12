@@ -1,0 +1,85 @@
+﻿@page
+@model FU_Library_Web.Areas.Home.Pages.IndexModel
+@{
+    ViewData["Title"] = "FPT Library";
+}
+
+<div class="main-wrapper">
+    <div class="main-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-search-block">
+                        <form method="get" action="/SearchBook" onsubmit="return validateForm()">
+                            <div class="main-search-block-content">
+                                <div class="select-options">
+                                    <select name="options" id="slOptions">
+                                        <option value="0" selected="selected">All</option>
+                                        <option value="1">Title</option>
+                                        <option value="2">Author</option>
+                                        <option value="3">Publisher</option>
+                                        <option value="4">DDC</option>
+                                        <option value="5">Language</option>
+                                        <option value="6">Keyword</option>
+                                        <option value="7">Subject</option>
+                                        <option value="8">ISBN</option>
+                                    </select>
+                                </div>
+                                <input type="search" id="txtSearch" name="keyword" size="100" placeholder="Everything" autocomplete="off">
+                                <input type="submit" id="btnSearch" value="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-2">
+    <h2 class="text-center m-4">News & Events</h2>
+    <div class="row justify-content-evenly">
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Lịch mượn, nhận sách giáo trình học kỳ Fall 2024 tại FPTU – Hà Nội</h5>
+                    </a>
+                    <p class="card-text">Bạn đọc cần xem để nắm được quy định, thủ tục khi mượn, nhận sách tại thư viện…</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Thông báo tạm ngừng phục vụ dịp nghỉ hè 2024</h5>
+                    </a>
+                    <p class="card-text">Trong dịp nghỉ hè 2024, thư viện sẽ đóng cửa từ ngày 29/6/2024 đến hết ngày 7/7/2024…</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Ngày hội đổi sách 2023 - Điều gì đang chờ đón?</h5>
+                    </a>
+                    <p class="card-text">Bạn muốn lan tỏa những cuốn sách hay? Đừng bỏ lỡ Ngày hội đổi sách 2023 nhé…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="#" class="btn btn-link btn-primary text-white text-decoration-none">SEE MORE >></a>
+    </div>
+</div>
