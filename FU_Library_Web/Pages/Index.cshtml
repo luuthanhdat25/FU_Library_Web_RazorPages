@@ -3,25 +3,27 @@
     ViewData["Title"] = "FPT Library";
     Layout = "_Layout";
 }
-<div class="main-search" style="display: flex; justify-content: center; width: 70%; margin-top: 30px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="main-search-block">
-                    <form method="get" action="/SearchBook" onsubmit="return validateForm()" style="display: flex; align-items: center;">
-                        <div class="main-search-block-content" style="display: flex; align-items: center; width: 100%;">
-                            <div class="select-options" style="margin-right: 10px;">
-                                <select name="options" id="slOptions">
-                                    <option value="0" selected="selected">All</option>
-                                    <option value="1">Title</option>
-                                    <option value="2">Author</option>
-                                    <option value="3">Publisher</option>
-                                    <option value="4">DDC</option>
-                                    <option value="5">Language</option>
-                                    <option value="6">Keyword</option>
-                                    <option value="7">Subject</option>
-                                    <option value="8">ISBN</option>
-                                </select>
+
+@model FU_Library_Web.Pages.IndexModel
+
+<div class="main-wrapper">
+    <div style="width: 60%" class="main-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-search-block">
+                        <form method="post" asp-page-handler="SearchAll">
+                            <div class="main-search-block-content">
+                                <div class="select-options">
+                                    <select name="options" id="slOptions">
+                                        <option value="0" selected="selected">All</option>
+                                        <option value="book">Book</option>
+                                        <option value="bookAuthor">Book Author</option>
+                                        <option value="bookcate">Book Category</option>
+                                    </select>
+                                </div>
+                                <input style="width: 80%" type="search" id="txtSearch" name="keysearch" size="100" placeholder="Everything" autocomplete="off">
+                                 <button type="submit">Search</button>
                             </div>
                             <input style="width: 80%; margin-right: 10px;" type="search" id="txtSearch" name="keyword" size="100" placeholder="Everything" autocomplete="off">
                             <input type="submit" id="btnSearch" value="Search" style="padding: 5px 15px;">

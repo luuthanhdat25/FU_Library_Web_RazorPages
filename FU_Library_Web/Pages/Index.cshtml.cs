@@ -14,7 +14,10 @@ namespace FU_Library_Web.Pages
 
 		public void OnGet()
 		{
-
 		}
+		public IActionResult OnPostSearchAll(string keysearch , string options)
+		{
+            return RedirectToPage("/SearchBook/Index", new { keysearch = keysearch, options = options });
+        }
 	}
 }
