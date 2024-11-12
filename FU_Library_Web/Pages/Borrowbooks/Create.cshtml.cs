@@ -42,9 +42,9 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return Page();
             }
 
-            BorrowBook.RequestStatusId = borrowingStatus.RequestStatusId;
+            BorrowBooks.RequestStatusId = borrowingStatus.RequestStatusId;
 
-            _context.BorrowBooks.Add(BorrowBook);
+            _context.BorrowBooks.Add(BorrowBooks);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

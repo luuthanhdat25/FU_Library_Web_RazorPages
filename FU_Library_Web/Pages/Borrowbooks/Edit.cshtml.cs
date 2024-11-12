@@ -35,7 +35,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
             {
                 return NotFound();
             }
-            BorrowBook = borrowbook;
+            BorrowBooks = borrowbooks;
            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Title");
            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName");
            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
@@ -46,7 +46,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            _context.Attach(BorrowBook).State = EntityState.Modified;
+            _context.Attach(BorrowBooks).State = EntityState.Modified;
 
             try
             {

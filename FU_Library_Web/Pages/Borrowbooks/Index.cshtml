@@ -14,16 +14,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BorrowBook[0].User)
+                @Html.DisplayNameFor(model => model.BorrowBooks[0].User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BorrowBook[0].Book)
+                @Html.DisplayNameFor(model => model.BorrowBooks[0].Book)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BorrowBooks[0].BorrowedDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BorrowBook[0].ReturnDate)
+                @Html.DisplayNameFor(model => model.BorrowBooks[0].ReturnDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BorrowBooks[0].RequestStatus)
@@ -32,7 +32,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.BorrowBook)
+        @foreach (var item in Model.BorrowBooks)
         {
             <tr>
                 <td>

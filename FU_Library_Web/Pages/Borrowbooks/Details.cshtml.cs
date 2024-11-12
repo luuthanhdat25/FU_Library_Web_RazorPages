@@ -35,7 +35,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
             }
             else
             {
-                BorrowBooks = borrowbooks;
+                BorrowBooks = borrowbook;
             }
             return Page();
         }

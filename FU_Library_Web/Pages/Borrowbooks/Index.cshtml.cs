@@ -24,7 +24,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
         public async Task OnGetAsync()
         {
             // Load the borrow books with related entities
-            BorrowBook = await _context.BorrowBooks
+            BorrowBooks = await _context.BorrowBooks
                 .Include(b => b.Book)
                 .Include(b => b.RequestStatus)
                 .Include(b => b.User)
@@ -40,7 +40,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
             {
                 bool hasChanges = false;
 
-                foreach (var borrow in BorrowBook)
+                foreach (var borrow in BorrowBooks)
                 {
                     // If the current date is past the ReturnDate, set the status to "Đã mượn"
                     if (borrow.ReturnDate < DateTime.Now && borrow.RequestStatus.StatusName != "Đã mượn")
