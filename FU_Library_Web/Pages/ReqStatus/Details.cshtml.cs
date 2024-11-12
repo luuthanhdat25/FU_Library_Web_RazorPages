@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Entity;
 using FU_Library_Web;
 
-namespace FU_Library_Web.Pages.Borrowbooks
+namespace FU_Library_Web.Pages.ReqStatus
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
             _context = context;
         }
 
-        public BorrowBooks BorrowBooks { get; set; } = default!;
+        public RequestStatus RequestStatus { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -28,14 +28,14 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return NotFound();
             }
 
-            var borrowbook = await _context.BorrowBooks.Include(it => it.User).Include(it =>it.RequestStatus).Include(it => it.Book).FirstOrDefaultAsync(m => m.BorrowBookId == id);
-            if (borrowbook == null)
+            var requeststatus = await _context.RequestStatuses.FirstOrDefaultAsync(m => m.RequestStatusId == id);
+            if (requeststatus == null)
             {
                 return NotFound();
             }
             else
             {
-                BorrowBooks = borrowbooks;
+                RequestStatus = requeststatus;
             }
             return Page();
         }

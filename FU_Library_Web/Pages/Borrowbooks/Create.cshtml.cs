@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using DataAccess.Entity;
-using FU_Library_Web;
+using Microsoft.EntityFrameworkCore;
 
 namespace FU_Library_Web.Pages.Borrowbooks
 {
@@ -26,32 +26,25 @@ namespace FU_Library_Web.Pages.Borrowbooks
 
         public IActionResult OnGet(Guid? bookId)
         {
-            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Description");
-            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
-
-            if (bookId.HasValue)
-            {
-                Book = _context.Books.FirstOrDefault(b => b.BookId == bookId.Value);
-
-                if (Book == null)
-                {
-                    return NotFound();
-                }
-                BorrowBooks.BookId = bookId.Value; // Gán BookId mặc định
-            }
-
+        ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Title");
+        ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            var borrowingStatus = await _context.RequestStatuses
+                .FirstOrDefaultAsync(rs => rs.StatusName == "Đang mượn");
+
+            if (borrowingStatus == null)
             {
+                ModelState.AddModelError(string.Empty, "The 'Đang mượn' status is not available.");
                 return Page();
             }
 
-            _context.BorrowBooks.Add(BorrowBooks);
+            BorrowBook.RequestStatusId = borrowingStatus.RequestStatusId;
+
+            _context.BorrowBooks.Add(BorrowBook);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -44,11 +44,6 @@ namespace FU_Library_Web.Pages.Book
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             _context.Attach(Books).State = EntityState.Modified;
 
             try
