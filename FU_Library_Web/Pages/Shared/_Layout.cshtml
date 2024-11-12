@@ -88,13 +88,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+                        <li><a asp-area="" asp-page="/Chat/Index">Chat</a></li>
+
                         <!-- Tin tức -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                 Tin tức
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-page="/TestNews/Index">Tin hoạt động</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/New/Index">Tin hoạt động</a></li>
                             </ul>
                         </li>
 
@@ -104,8 +106,8 @@
                                 Tác giả
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="authorDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Index">Danh sách tác giả</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Create">Tạo tác giả</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/Authorbook/Index">Danh sách tác giả</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-page="/Category/Index">Tạo tác giả</a></li>
                             </ul>
                         </li>
 
