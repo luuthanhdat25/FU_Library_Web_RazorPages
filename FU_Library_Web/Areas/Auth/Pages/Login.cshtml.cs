@@ -63,7 +63,8 @@ namespace FU_Library_Web.Areas.Auth.Pages
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, userAccount.FullName),
-                    new Claim(ClaimTypes.Role, userAccount.UserType.ToString())
+                    new Claim(ClaimTypes.Role, userAccount.UserType.ToString()),
+                    new Claim(ClaimTypes.Email, userAccount.Email)
                 };
 
                 //Config User to Cookie
