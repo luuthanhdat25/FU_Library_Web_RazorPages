@@ -30,7 +30,7 @@ namespace DataAccess.Repository.Implement
             _dbContext.Set<T>().Remove(entity);
         }
 
-        public async Task<T> Get(int id)
+        public async Task<T> Get(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using DataAccess.Entity;
 using FU_Library_Web;
 using Microsoft.EntityFrameworkCore;
+using FU_Library_Web.Utils;
 
 namespace FU_Library_Web.Pages.Book
 {
     public class CreateModel : PageModel
     {
         private readonly FU_Library_Web.DatabaseContext _context;
-
-        public CreateModel(FU_Library_Web.DatabaseContext context)
+        private readonly IUploadImageService _uploadImageService;
+        public CreateModel(FU_Library_Web.DatabaseContext context, IUploadImageService uploadImageService)
         {
             _context = context;
+            _uploadImageService = uploadImageService;
         }
 
         public IActionResult OnGet()
@@ -31,12 +33,13 @@ namespace FU_Library_Web.Pages.Book
 
         [BindProperty]
         public Books Books { get; set; } = default!;
-
+        [BindProperty]
+        public IFormFile File { get; set; } = default!;
         // To handle the selected authors
         [BindProperty]
         public Guid SelectedAuthorIds { get; set; }
 
-        public  IActionResult OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (SelectedAuthorIds != null)
             {
@@ -44,7 +47,7 @@ namespace FU_Library_Web.Pages.Book
                     .FirstOrDefault(e => e.BookAuthorId == SelectedAuthorIds);
 
                 Books.BookAuthorId = authors.BookAuthorId;
-                Books.ImageUrl = "";
+                Books.ImageUrl = await _uploadImageService.UploadImage(this.File);
             }
 
             _context.Books.Add(Books);

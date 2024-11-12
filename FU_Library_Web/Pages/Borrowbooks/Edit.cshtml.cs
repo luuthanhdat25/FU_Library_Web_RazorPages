@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using FU_Library_Web;
 using DataAccess.Entity;
+using FU_Library_Web;
 
 namespace FU_Library_Web.Pages.Borrowbooks
 {
@@ -21,7 +21,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
         }
 
         [BindProperty]
-        public BorrowBooks BorrowBook { get; set; } = default!;
+        public BorrowBooks BorrowBooks { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -30,12 +30,12 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return NotFound();
             }
 
-            var borrowbook =  await _context.BorrowBooks.FirstOrDefaultAsync(m => m.BorrowBookId == id);
-            if (borrowbook == null)
+            var borrowbooks =  await _context.BorrowBooks.FirstOrDefaultAsync(m => m.BorrowBookId == id);
+            if (borrowbooks == null)
             {
                 return NotFound();
             }
-            BorrowBook = borrowbook;
+            BorrowBooks = borrowbooks;
            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Description");
            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName");
            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
@@ -51,7 +51,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return Page();
             }
 
-            _context.Attach(BorrowBook).State = EntityState.Modified;
+            _context.Attach(BorrowBooks).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BorrowBookExists(BorrowBook.BorrowBookId))
+                if (!BorrowBooksExists(BorrowBooks.BorrowBookId))
                 {
                     return NotFound();
                 }
@@ -72,7 +72,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
             return RedirectToPage("./Index");
         }
 
-        private bool BorrowBookExists(Guid id)
+        private bool BorrowBooksExists(Guid id)
         {
             return _context.BorrowBooks.Any(e => e.BorrowBookId == id);
         }

@@ -3,8 +3,10 @@ using BusinessLayer.Service.Interface;
 using DataAccess.Repository.Implement;
 using DataAccess.Repository.Interface;
 using FU_Library_Web;
+using FU_Library_Web.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +20,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<INewsRepository, NewsRepository>();
 builder.Services.AddScoped<IBookAuthorRepository, BookAuthorRepository>();
 
-
-
+builder.Services.Configure<FireBaseOptions>(builder.Configuration.GetSection("FireBase"));
+builder.Services.AddTransient(typeof(IUploadImageService), typeof(UploadImageService));
+// register service
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddRazorPages();
 
 // Configure session

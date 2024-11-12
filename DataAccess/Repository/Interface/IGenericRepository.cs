@@ -9,7 +9,7 @@ namespace DataAccess.Repository
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task<T> Get(int id);
+        Task<T> Get(Guid id);
         Task<List<T>> GetAll();
         Task<T> Add(T entity);
         Task Update(T entity);
