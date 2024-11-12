@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,49 +12,66 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-container d-flex justify-content-between align-items-center">
             <div class="logo">
                 <a href="/">
                     <img src="~/images/logo.png" alt="FPT University Logo">
                 </a>
             </div>
-            <div class="welcome-info">
-                <h1>Welcome to <strong style="color: #f3030f;">FPT Library</strong> </h1>
+            <div class="welcome-info text-center mx-auto">
+                <h1>Welcome to <strong style="color: #f3030f;">Thư viện FPT</strong> </h1>
                 <p>Open: 08:15 - 21:00 Weekday | 08:00 - 12:00 & 13:00 - 17:00 Weekend</p>
             </div>
-            <div class="language-login">
-                <a href="/Auth/Login">Login</a> | <a href="#">Vietnamese</a>
+
+            <div class="d-flex ms-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="language-login">
+                        <a class="nav-link" href="/Auth/Logout">Đăng xuất</a>
+                    </div>
+                    <div class="language-login ms-3">
+                        <div class="navbar-text">@User.FindFirstValue(ClaimTypes.Name)</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="language-login">
+                        <a href="/Auth/Login">Đăng nhập</a>
+                    </div>
+                }
             </div>
         </div>
+
         <nav class="navigation">
             <ul class="h-100">
                 <li><a href="/">Trang chủ</a></li>
-                <li style="position: relative"><a href="#">Tin tức</a>
-                    <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/TestNews/Index">Tin hoạt động</a></li>
-                    </ul>
-                </li>
                 <li style="position: relative">
-                    <a href="#">Tác giả</a>
-                    <ul class="dropdown-menu" aria-labelledby="authorDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Index">Danh sách tác giả</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Create">Tạo tác giả</a></li>
-                    </ul>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                    {
+                        <a asp-area="Admin" asp-page="/New/Index">Tin tức</a>
+                    }
+                    else
+                    {
+                        <a asp-area="News" asp-page="/Index">Tin tức</a>
+                    }
+                    @* <ul class="dropdown-menu" aria-labelledby="newsDropdown">
+                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/New/Index">Tin hoạt động</a></li>
+                    </ul> *@
                 </li>
-                <li style="position: relative">
-                    <a href="#">Loại sách</a>
-                    <ul class="dropdown-menu" aria-labelledby="bookCategoryDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Cate/Index">Danh sách loại sách</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Cate/Create">Tạo loại sách</a></li>
-                    </ul>
-                </li>
-                <li style="position: relative">
-                    <a href="#">Sách</a>
-                    <ul class="dropdown-menu" aria-labelledby="bookDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Book/Index">Danh sách sách</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Book/Create">Tạo sách</a></li>
-                    </ul>
-                </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                {
+                    <li style="position: relative">
+                        <a asp-area="Admin" asp-page="/Authorbook/Index">Tác giả</a>
+                    </li>
+
+                    <li style="position: relative">
+                        <a asp-area="Admin" asp-page="/Category/Index">Loại sách</a>
+                    </li>
+
+                    <li style="position: relative">
+                        <a asp-page="/Book/Index">Danh sách sách</a>
+                    </li>
+                }
             </ul>
         </nav>
     </header>
@@ -68,12 +87,11 @@
             margin: 0;
             color: #000;
             list-style: none;
-            z-index: 1; 
+            z-index: 1;
         }
 
         .navigation li:hover > ul.dropdown-menu {
             display: block;
-
         }
     </style>
     @RenderBody()

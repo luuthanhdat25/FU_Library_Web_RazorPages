@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository.Interface
 {
-    public interface IUserRepository : IGenericRepository<Users>
+    public interface INewsRepository : IGenericRepository<News>
     {
-        public Task<(bool IsValid, Users? Account)> ValidateUserAsync(string email, string password);
     }
 }
