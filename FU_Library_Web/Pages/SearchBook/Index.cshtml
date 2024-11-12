@@ -1,0 +1,70 @@
+﻿@page
+@{
+    ViewData["Title"] = "FPT Library";
+    Layout = "_Layout";
+}
+
+@model FU_Library_Web.Pages.SearchBook.IndexModel
+
+<div class="container my-2" style="height: 700px">
+    <div class="w-75 d-flex justify-content-center">
+        <form method="Get">
+            <div class="main-search-block-content">
+                <div class="select-options">
+                    <select name="options" id="slOptions">
+                        <option value="0" selected="selected">All</option>
+                        <option value="book">Book</option>
+                        <option value="bookAuthor">Book Author</option>
+                        <option value="bookcate">Book Category</option>
+                    </select>
+                </div>
+                <input style="width: 80%" type="search" id="txtSearch" name="keysearch" size="100" placeholder="Everything" autocomplete="off">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        @if (Model.Books != null && Model.Books.Any())
+        {
+            <div class="row">
+                @foreach (var book in Model.Books)
+                {
+                    <div class="col-md-8 mb-4">
+                        <div class="card">
+                            <div class="card-body row">
+                                <div class="col-3">
+                                </div>
+                                <div class="col-9">
+                                    <h5 style="color: blue; font-weight: bold" class="card-title mb-4">@book.Title</h5>
+                                    <h6 class="card-subtitle mb-3 text-muted"> <b>Tác giả:</b> @book.BookAuthor.FullName</h6>
+                                    <h6 class="card-subtitle mb-3 text-muted"> <b>Thể loại:</b> @book.BookCategory.Name</h6>
+                                    <h6 class="card-subtitle mb-3 text-muted"> <b>Lần xuất bản:</b> @book.Edition</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="pagination mt-4 justify-content-center pb-5">
+                @if (Model.CurrentPage > 1)
+                {
+                    <a href="?keysearch=@Request.Query["keysearch"]&options=@Request.Query["options"]&pageNumber=@(Model.CurrentPage - 1)" style="margin-right: 15px; margin-top: -10px;" class="btn btn-primary">Previous</a>
+                }
+
+                <span class="page-info">Page @Model.CurrentPage of @Model.TotalPages</span>
+
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                    <a href="?keysearch=@Request.Query["keysearch"]&options=@Request.Query["options"]&pageNumber=@(Model.CurrentPage + 1)" style="margin-left: 15px; margin-top: -10px;" class="btn btn-primary">Next</a>
+                }
+            </div>
+
+        }
+        else
+        {
+            <p>No books found matching your criteria.</p>
+        }
+    </div>
+</div>

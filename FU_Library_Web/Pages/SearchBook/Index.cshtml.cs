@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,10 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Entity;
-using FU_Library_Web;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace FU_Library_Web.Pages.Book
+namespace FU_Library_Web.Pages.SearchBook
 {
     public class IndexModel : PageModel
     {
@@ -21,30 +19,43 @@ namespace FU_Library_Web.Pages.Book
         }
 
         public List<Books> Books { get; set; } = default!;
+        public int TotalPages { get; set; }
+        public int CurrentPage { get; set; } = 1;
 
-        public async Task OnGetAsync(string? keysearch, string? name)
+        public const int PageSize = 10;
+
+        public async Task OnGetAsync(string? keysearch, string? options, int? pageNumber)
         {
+            pageNumber = pageNumber ?? 1;
+
             var query = _context.Books
                 .Include(b => b.BookCategory)
                 .Include(b => b.BookAuthor)
                 .AsQueryable();
 
-            if (name == "book" && !string.IsNullOrEmpty(keysearch) || name == "0")
+            if (options == "book" && !string.IsNullOrEmpty(keysearch) || options == "0")
             {
                 query = query.Where(b => b.Title.Contains(keysearch));
             }
 
-            if (name == "bookAuthor" && !string.IsNullOrEmpty(keysearch))
+            if (options == "bookAuthor" && !string.IsNullOrEmpty(keysearch))
             {
                 query = query.Where(b => b.BookAuthor.FullName.Contains(keysearch));
             }
 
-            if (name == "bookcate" && !string.IsNullOrEmpty(keysearch))
+            if (options == "bookcate" && !string.IsNullOrEmpty(keysearch))
             {
                 query = query.Where(b => b.BookCategory.Name.Contains(keysearch));
             }
 
-            Books = await query.ToListAsync();
+            TotalPages = (int)Math.Ceiling(await query.CountAsync() / (double)PageSize);
+
+            Books = await query
+                .Skip((pageNumber.Value - 1) * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
+
+            CurrentPage = pageNumber.Value;
         }
 
 
