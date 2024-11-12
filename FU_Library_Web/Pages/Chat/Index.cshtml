@@ -1,0 +1,52 @@
+﻿@page
+@model FU_Library_Web.Areas.Chat.IndexModel
+
+@{
+    ViewData["Title"] = "Chat Box";
+
+    // Tạo một danh sách tin nhắn mẫu
+    var sampleMessages = new List<dynamic>
+    {
+        new { Sender = "sender1", SenderName = "Alice", Content = "Hello, Bob!", Timestamp = DateTime.Now.AddMinutes(-5) },
+        new { Sender = "sender2", SenderName = "Bob", Content = "Hi, Alice! How are you?", Timestamp = DateTime.Now.AddMinutes(-4) },
+        new { Sender = "sender1", SenderName = "Alice", Content = "I'm good, thanks for asking!", Timestamp = DateTime.Now.AddMinutes(-3) },
+    };
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+            <h5>Staff "Dat" in Campus Da Nang</h5>
+        </div>
+        <div class="card-body chat-box overflow-auto" style="height: 400px;">
+            <!-- Hiển thị các tin nhắn mẫu -->
+            @foreach (var message in sampleMessages)
+            {
+                <div class="d-flex @((message.Sender == "sender1" ? "justify-content-start" : "justify-content-end")) mb-3">
+                    <div class="p-2 rounded text-white
+                                @(message.Sender == "sender1" ? "bg-info" : "bg-danger")" style="max-width: 70%;">
+                        <strong>@message.SenderName:</strong> @message.Content
+                        <div class="text-uppercase text-black-50 small text-end font-weight-bold">@message.Timestamp.ToString("HH:mm")</div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <form method="post" class="d-flex">
+                <input type="text" name="MessageContent" class="form-control me-2" placeholder="Type your message here..." required />
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Optional JavaScript to auto-scroll chat box
+        const chatBox = document.querySelector('.chat-box');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    </script>
+}
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

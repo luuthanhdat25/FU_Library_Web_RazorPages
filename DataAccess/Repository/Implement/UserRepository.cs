@@ -1,5 +1,6 @@
 ﻿using DataAccess.Repository.Interface;
 using FU_Library_Web;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,11 @@ namespace DataAccess.Repository.Implement
         {
         }
 
+        public async Task<(bool IsValid, Users? Account)> ValidateUserAsync(string email, string password)
+        {
+            var identityUser = await _dbContext.Users.FirstOrDefaultAsync(u => u.Password == password && u.Email == email);
+            if (identityUser != null) return (true, identityUser);
+            return (false, null);
+        }
     }
 }

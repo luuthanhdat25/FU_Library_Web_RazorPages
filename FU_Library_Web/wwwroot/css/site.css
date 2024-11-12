@@ -79,26 +79,26 @@ p {
     background-color: #faae2d;
 }
 
-    .navigation ul {
+    .navigation > ul {
         display: flex;
         list-style-type: none;
         padding: 0;
     }
 
-        .navigation ul li:hover {
+        .navigation > ul > li:hover {
             cursor: pointer;
             background-color: #000;
             transition: ease-in 0.2s;
         }
 
-        .navigation ul li {
+        .navigation > ul > li {
             padding: 16.2px 15px 18px 15px;
             display: inline;
             margin-left: -4px;
             font-weight: bold;
         }
 
-            .navigation ul li a {
+            .navigation > ul > li > a {
                 text-decoration: none;
                 color: #fff;
             }
@@ -150,6 +150,8 @@ p {
         .main-search-block-content input[type="submit"]:hover {
             background-color: #ff9933;
         }
+
+    
 
 .news-container {
     min-height: calc(100vh - 200px);
@@ -251,6 +253,7 @@ label {
 
 footer {
     text-align: center;
+    position: fixed;
 }
 
 .fb_iframe_widget {
