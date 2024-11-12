@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FU_Library_Web;
 using DataAccess.Entity;
+using FU_Library_Web;
 
 namespace FU_Library_Web.Pages.Borrowbooks
 {
@@ -19,7 +19,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
             _context = context;
         }
 
-        public BorrowBooks BorrowBook { get; set; } = default!;
+        public BorrowBooks BorrowBooks { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -28,14 +28,14 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return NotFound();
             }
 
-            var borrowbook = await _context.BorrowBooks.FirstOrDefaultAsync(m => m.BorrowBookId == id);
-            if (borrowbook == null)
+            var borrowbooks = await _context.BorrowBooks.FirstOrDefaultAsync(m => m.BorrowBookId == id);
+            if (borrowbooks == null)
             {
                 return NotFound();
             }
             else
             {
-                BorrowBook = borrowbook;
+                BorrowBooks = borrowbooks;
             }
             return Page();
         }

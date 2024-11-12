@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FU_Library_Web;
 using DataAccess.Entity;
+using FU_Library_Web;
 
 namespace FU_Library_Web.Pages.Borrowbooks
 {
@@ -19,11 +19,11 @@ namespace FU_Library_Web.Pages.Borrowbooks
             _context = context;
         }
 
-        public IList<BorrowBooks> BorrowBook { get;set; } = default!;
+        public IList<BorrowBooks> BorrowBooks { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            BorrowBook = await _context.BorrowBooks
+            BorrowBooks = await _context.BorrowBooks
                 .Include(b => b.Book)
                 .Include(b => b.RequestStatus)
                 .Include(b => b.User).ToListAsync();

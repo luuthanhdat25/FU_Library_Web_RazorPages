@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using FU_Library_Web;
 using DataAccess.Entity;
+using FU_Library_Web;
 
 namespace FU_Library_Web.Pages.Borrowbooks
 {
@@ -19,18 +19,31 @@ namespace FU_Library_Web.Pages.Borrowbooks
             _context = context;
         }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public BorrowBooks BorrowBooks { get; set; } = default!;
+
+        public Books Book { get; set; } // Thêm để lấy thông tin chi tiết sách
+
+        public IActionResult OnGet(Guid? bookId)
         {
-        ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Description");
-        ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName");
-        ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
+            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Description");
+            ViewData["RequestStatusId"] = new SelectList(_context.RequestStatuses, "RequestStatusId", "StatusName");
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
+
+            if (bookId.HasValue)
+            {
+                Book = _context.Books.FirstOrDefault(b => b.BookId == bookId.Value);
+
+                if (Book == null)
+                {
+                    return NotFound();
+                }
+                BorrowBooks.BookId = bookId.Value; // Gán BookId mặc định
+            }
+
             return Page();
         }
 
-        [BindProperty]
-        public BorrowBooks BorrowBook { get; set; } = default!;
-
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -38,7 +51,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
                 return Page();
             }
 
-            _context.BorrowBooks.Add(BorrowBook);
+            _context.BorrowBooks.Add(BorrowBooks);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

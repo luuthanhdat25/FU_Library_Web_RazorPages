@@ -94,7 +94,7 @@
                                 Tin tức
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-page="/TestNews/Index">Tin hoạt động</a></li>
+                                <li><a class="dropdown-item" asp-area="News" asp-page="/Index">Tin hoạt động</a></li>
                             </ul>
                         </li>
 
@@ -121,6 +121,16 @@
                         </li>
 
                         <!-- Sách -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="bookDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                Sách
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="bookDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Book/Index">Danh sách sách</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Book/Create">Tạo sách</a></li>
+                            </ul>
+                        </li>
+                        <!-- mượn sách -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="bookDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                 Sách
