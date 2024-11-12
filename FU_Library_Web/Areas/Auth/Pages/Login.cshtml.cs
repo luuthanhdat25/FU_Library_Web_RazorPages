@@ -6,19 +6,23 @@ using BusinessLayer.Service.Interface;
 using BusinessLayer.Dtos;
 using FU_Library_Web.Utils;
 using DataAccess.Entity;
+using DataAccess.Repository.Interface;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace FU_Library_Web.Areas.Auth.Pages
 {
     public class IndexModel : PageModel
     {
         //private readonly DatabaseContext _databaseContext;
-        private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
 
-        private readonly SessionUtils sessionUtils;
+       // private readonly SessionUtils sessionUtils;
 
-        public IndexModel(IUserService userService)
+        public IndexModel(IUserRepository userRepository)
         {
-            _userService = userService;
+            _userRepository = userRepository;
         }
         //public IndexModel()
         //{
@@ -46,25 +50,35 @@ namespace FU_Library_Web.Areas.Auth.Pages
                 return Page();
             }
 
-            //if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
-            //{
-            //    ModelState.AddModelError(nameof(Password), "Password must be at least 6 characters long.");
-            //    return Page();
-            //}
-
-            var user = await _userService.Login(Login);
-            
-            if (user)
+           /* if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
             {
-              /*  sessionUtils.SetObjectInSession("UserSession", user);*/
+                ModelState.AddModelError(nameof(Password), "Password must be at least 6 characters long.");
+                return Page();
+            }*/
 
+            var (isValidUser, userAccount) = await _userRepository.ValidateUserAsync(Email, Password);
 
-                return Redirect("/Home"); 
+            if (isValidUser)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, userAccount.FullName),
+                    new Claim(ClaimTypes.Role, userAccount.UserType.ToString())
+                };
+
+                //Config User to Cookie
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = false //Close when browser close
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                return Redirect("/Index");
             }
-            else
-            {
+
             ModelState.AddModelError(string.Empty, "Email or Password is incorrect.");
-            }
             return Page();
         }
     }

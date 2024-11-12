@@ -12,7 +12,7 @@ namespace DataAccess.Repository.Implement
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DatabaseContext _dbContext;
+        protected readonly DatabaseContext _dbContext;
 
         public GenericRepository(DatabaseContext dbContext)
         {

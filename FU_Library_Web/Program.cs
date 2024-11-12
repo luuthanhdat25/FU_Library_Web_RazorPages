@@ -22,18 +22,26 @@ builder.Services.AddScoped<IBookAuthorRepository, BookAuthorRepository>();
 
 
 
-// register service
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddRazorPages();
 
 // Configure session
+// Add Session
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
 });
+// Service to get HttpContext
+builder.Services.AddHttpContextAccessor();
 
+// Security by Cookie
+builder.Services.AddAuthentication(
+        Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme
+    ).AddCookie(options =>
+    {
+        options.LoginPath = "/Auth/Login";
+        options.LogoutPath = "/Auth/Logout";
+        options.AccessDeniedPath = "/Auth/AccessDenied";
+    });
 
 // Add authentication and authorization policies if needed
 /*builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
