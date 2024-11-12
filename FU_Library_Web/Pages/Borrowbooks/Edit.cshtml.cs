@@ -46,11 +46,6 @@ namespace FU_Library_Web.Pages.Borrowbooks
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             _context.Attach(BorrowBook).State = EntityState.Modified;
 
             try

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Entity;
 using FU_Library_Web;
 
-namespace FU_Library_Web.Pages.Book
+namespace FU_Library_Web.Pages.ReqStatus
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace FU_Library_Web.Pages.Book
         }
 
         [BindProperty]
-        public Books Books { get; set; } = default!;
+        public RequestStatus RequestStatus { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -30,13 +30,12 @@ namespace FU_Library_Web.Pages.Book
                 return NotFound();
             }
 
-            var books =  await _context.Books.FirstOrDefaultAsync(m => m.BookId == id);
-            if (books == null)
+            var requeststatus =  await _context.RequestStatuses.FirstOrDefaultAsync(m => m.RequestStatusId == id);
+            if (requeststatus == null)
             {
                 return NotFound();
             }
-            Books = books;
-           ViewData["BookCategoryId"] = new SelectList(_context.BookCategories, "BookCategoryId", "Name");
+            RequestStatus = requeststatus;
             return Page();
         }
 
@@ -44,7 +43,12 @@ namespace FU_Library_Web.Pages.Book
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            _context.Attach(Books).State = EntityState.Modified;
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Attach(RequestStatus).State = EntityState.Modified;
 
             try
             {
@@ -52,7 +56,7 @@ namespace FU_Library_Web.Pages.Book
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BooksExists(Books.BookId))
+                if (!RequestStatusExists(RequestStatus.RequestStatusId))
                 {
                     return NotFound();
                 }
@@ -65,9 +69,9 @@ namespace FU_Library_Web.Pages.Book
             return RedirectToPage("./Index");
         }
 
-        private bool BooksExists(Guid id)
+        private bool RequestStatusExists(Guid id)
         {
-            return _context.Books.Any(e => e.BookId == id);
+            return _context.RequestStatuses.Any(e => e.RequestStatusId == id);
         }
     }
 }

@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using FU_Library_Web;
 using DataAccess.Entity;
-using Microsoft.EntityFrameworkCore;
+using FU_Library_Web;
 
-namespace FU_Library_Web.Pages.Borrowbooks
+namespace FU_Library_Web.Pages.ReqStatus
 {
     public class CreateModel : PageModel
     {
@@ -22,29 +21,21 @@ namespace FU_Library_Web.Pages.Borrowbooks
 
         public IActionResult OnGet()
         {
-        ViewData["BookId"] = new SelectList(_context.Books, "BookId", "Title");
-        ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Email");
             return Page();
         }
 
         [BindProperty]
-        public BorrowBooks BorrowBook { get; set; } = default!;
+        public RequestStatus RequestStatus { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            var borrowingStatus = await _context.RequestStatuses
-                .FirstOrDefaultAsync(rs => rs.StatusName == "Đang mượn");
-
-            if (borrowingStatus == null)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "The 'Đang mượn' status is not available.");
                 return Page();
             }
 
-            BorrowBook.RequestStatusId = borrowingStatus.RequestStatusId;
-
-            _context.BorrowBooks.Add(BorrowBook);
+            _context.RequestStatuses.Add(RequestStatus);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
