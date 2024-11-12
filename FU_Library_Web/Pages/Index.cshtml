@@ -3,97 +3,82 @@
     ViewData["Title"] = "FPT Library";
     Layout = "_Layout";
 }
-<style>
-    .main-search {
-        background-color: rgba(255, 165, 0, 0.8); /* Màu cam nhạt với opacity 80% */
-        padding: 15px 20px;
-        border-radius: 8px; /* Thêm bo tròn cho góc */
-        display: flex; /* Dùng flex để căn chỉnh các phần tử nằm ngang */
-        justify-content: space-between; /* Căn chỉnh các phần tử ở giữa */
-        align-items: center; /* Căn chỉnh phần tử dọc */
-        flex-wrap: wrap; /* Cho phép các phần tử xuống dòng nếu không đủ chỗ */
-        width: 100%; /* Đảm bảo phần tìm kiếm không vượt ra ngoài */
-    }
-
-    /* Phần tìm kiếm nằm ngang với các phần tử căn chỉnh bên cạnh nhau */
-    .main-search-block-content form {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        width: 100%;
-    }
-
-    .select-options {
-        margin-right: 10px; /* Khoảng cách giữa dropdown và input */
-    }
-
-    #btnSearch {
-        background-color: #FFA500; /* Màu cam đậm */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px; /* Thêm bo tròn cho góc nút */
-    }
-
-        #btnSearch:hover {
-            background-color: #FF8C00; /* Thay đổi màu cam khi hover */
-        }
-
-    #txtSearch {
-        padding: 8px 15px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #FFA500; /* Thêm viền màu cam */
-        margin-right: 10px; /* Khoảng cách giữa input và nút */
-    }
-
-    .main-search-block-content a {
-        color: white; /* Màu chữ trắng */
-        font-size: 15px;
-        text-decoration: none;
-    }
-
-        .main-search-block-content a + span {
-            margin-left: 10px;
-            margin-right: 10px;
-            border-right: 2px solid white;
-        }
-</style>
-
-<div class="container">
-
-    <div class="main-wrapper">
-        <div class="main-search">
-            <div class="main-search-block-content">
-                <form method="get" action="https://library.fpt.edu.vn/SearchBook" onsubmit="return validateForm()">
-                    <div class="select-options">
-                        <select name="options" id="slOptions">
-                            <option value="0" selected="selected">All</option>
-                            <option value="1">Title</option>
-                            <option value="2">Author</option>
-                            <option value="3">Publisher</option>
-                            <option value="4">DDC</option>
-                            <option value="5">Language</option>
-                            <option value="6">Keyword</option>
-                            <option value="7">Subject</option>
-                            <option value="8">ISBN</option>
-                        </select>
+<div class="main-wrapper">
+    <div style="width: 60%" class="main-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-search-block">
+                        <form method="get" action="/SearchBook" onsubmit="return validateForm()">
+                            <div class="main-search-block-content">
+                                <div class="select-options">
+                                    <select name="options" id="slOptions">
+                                        <option value="0" selected="selected">All</option>
+                                        <option value="1">Title</option>
+                                        <option value="2">Author</option>
+                                        <option value="3">Publisher</option>
+                                        <option value="4">DDC</option>
+                                        <option value="5">Language</option>
+                                        <option value="6">Keyword</option>
+                                        <option value="7">Subject</option>
+                                        <option value="8">ISBN</option>
+                                    </select>
+                                </div>
+                                <input style="width: 80%" type="search" id="txtSearch" name="keyword" size="100" placeholder="Everything" autocomplete="off">
+                                <input type="submit" id="btnSearch" value="Search">
+                            </div>
+                        </form>
                     </div>
-                    <input type="search" id="txtSearch" name="keyword" size="100" placeholder="Everything" autocomplete="off" />
-                    <input type="submit" id="btnSearch" value="Search" />
-                </form>
-                <div class="main-search-links">
-                    <a style="color: white;" href='AdvancedSearchBook.html' target="_blank">Advanced Search</a>
-                    <span></span>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO8zgKNu7i9hpbeyj5fKdnMIFk483_iDJsqWJSQ6DtUmhh6A/viewform" target="_blank">Request material</a>
-                    <span></span>
-                    <a target="_blank" href='NewMaterialace3.html?libFilter=0&amp;monthFilter=11&amp;yearFilter=2024'>New material</a>
-                    <span></span>
-                    <a target="_blank" href='ReadALot.html'>Read a lot</a>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container my-2" style="height: 700px">
+    <h2 class="text-center m-4">News & Events</h2>
+    <div class="row justify-content-evenly">
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Lịch mượn, nhận sách giáo trình học kỳ Fall 2024 tại FPTU – Hà Nội</h5>
+                    </a>
+                    <p class="card-text">Bạn đọc cần xem để nắm được quy định, thủ tục khi mượn, nhận sách tại thư viện…</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Thông báo tạm ngừng phục vụ dịp nghỉ hè 2024</h5>
+                    </a>
+                    <p class="card-text">Trong dịp nghỉ hè 2024, thư viện sẽ đóng cửa từ ngày 29/6/2024 đến hết ngày 7/7/2024…</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card" style="box-shadow: 0 7px 28px rgb(255 181 0 / 50%);">
+                <a href="your-link-here" class="text-decoration-none">
+                    <img src="~/images/web-news.jpg" class="card-img-top img-thumbnail" alt="Library Closure Notice">
+                </a>
+                <div class="card-body">
+                    <a href="your-link-here" class="text-decoration-none">
+                        <h5 class="card-title text-primary">Ngày hội đổi sách 2023 - Điều gì đang chờ đón?</h5>
+                    </a>
+                    <p class="card-text">Bạn muốn lan tỏa những cuốn sách hay? Đừng bỏ lỡ Ngày hội đổi sách 2023 nhé…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <a href="#" class="btn btn-link btn-primary text-white text-decoration-none">SEE MORE >></a>
     </div>
 </div>
