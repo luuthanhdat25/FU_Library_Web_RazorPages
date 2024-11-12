@@ -1,0 +1,70 @@
+﻿@page
+@model FU_Library_Web.Pages.Book.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Books</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Books.BookId"/>
+            <div class="form-group">
+                <label asp-for="Books.Title" class="control-label"></label>
+                <input asp-for="Books.Title" class="form-control" />
+                <span asp-validation-for="Books.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Books.ISBN" class="control-label"></label>
+                <input asp-for="Books.ISBN" class="form-control" />
+                <span asp-validation-for="Books.ISBN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Books.Edition" class="control-label"></label>
+                <input asp-for="Books.Edition" class="form-control" />
+                <span asp-validation-for="Books.Edition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Books.Publisher" class="control-label"></label>
+                <input asp-for="Books.Publisher" class="form-control" />
+                <span asp-validation-for="Books.Publisher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Books.PublicationYear" class="control-label"></label>
+                <input asp-for="Books.PublicationYear" class="form-control" />
+                <span asp-validation-for="Books.PublicationYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Books.Description" class="control-label"></label>
+                <input asp-for="Books.Description" class="form-control" />
+                <span asp-validation-for="Books.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Books.ImageUrl" class="control-label"></label>
+                <input asp-for="Books.ImageUrl" class="form-control" />
+                <span asp-validation-for="Books.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Books.BookCategoryId" class="control-label"></label>
+                <select asp-for="Books.BookCategoryId" class="form-control" asp-items="ViewBag.BookCategoryId"></select>
+                <span asp-validation-for="Books.BookCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,165 @@
+﻿@page
+@model FU_Library_Web.Pages.Book.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Books</h4>
+<hr />
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Books.Title" class="control-label"></label>
+                    <input asp-for="Books.Title" class="form-control" />
+                    <span asp-validation-for="Books.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Books.ISBN" class="control-label"></label>
+                    <input asp-for="Books.ISBN" class="form-control" />
+                    <span asp-validation-for="Books.ISBN" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Books.Edition" class="control-label"></label>
+                    <input asp-for="Books.Edition" class="form-control" />
+                    <span asp-validation-for="Books.Edition" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Books.Publisher" class="control-label"></label>
+                    <input asp-for="Books.Publisher" class="form-control" />
+                    <span asp-validation-for="Books.Publisher" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Books.PublicationYear" class="control-label"></label>
+                    <input asp-for="Books.PublicationYear" class="form-control" type="date" />
+                    <span asp-validation-for="Books.PublicationYear" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Books.Description" class="control-label"></label>
+                    <input asp-for="Books.Description" class="form-control" />
+                    <span asp-validation-for="Books.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Books.ImageUrl" class="control-label"></label>
+                    <input asp-for="Books.ImageUrl" class="form-control" type="text" />
+                    
+                </div>
+                <div class="form-group">
+                    <label asp-for="Books.BookCategoryId" class="control-label"></label>
+                    <select asp-for="Books.BookCategoryId" class="form-control" asp-items="ViewBag.BookCategoryId"></select>
+                </div>
+                <div class="form-group">
+                    <label for="SelectedAuthorIds">Authors</label>
+                    <select asp-for="SelectedAuthorIds" class="form-control" asp-items="ViewBag.BookAuthorId">
+                    </select>
+                    <span asp-validation-for="SelectedAuthorIds" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Books.AvailabilityStatus" /> @Html.DisplayNameFor(model => model.Books.AvailabilityStatus)
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+<style>
+    /* Center the form and make it wider */
+    .container {
+        max-width: 800px;
+        margin-top: 30px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Two-column layout styling */
+    .row {
+        display: flex;
+        gap: 20px;
+    }
+
+    .col-md-6 {
+        flex: 1;
+    }
+
+    /* Input field styling */
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: border-color 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+    /* Error message styling */
+    .text-danger {
+        font-size: 0.85em;
+        color: #d9534f;
+    }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 1em;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .btn-primary:active {
+            background-color: #004080;
+            transform: scale(1);
+        }
+
+    /* Checkbox alignment */
+    .form-check-label {
+        font-weight: normal;
+        color: #555;
+    }
+
+    /* Back to List link styling */
+    a[asp-page="Index"] {
+        color: #007bff;
+        font-weight: bold;
+        margin-top: 20px;
+        display: inline-block;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        a[asp-page="Index"]:hover {
+            color: #0056b3;
+        }
+</style>

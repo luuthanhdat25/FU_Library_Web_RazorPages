@@ -1,9 +1,8 @@
 ﻿@page
-@model FU_Library_Web.Pages.Books.IndexModel
+@model FU_Library_Web.Pages.Book.IndexModel
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
 }
 
 <h1>Index</h1>
@@ -15,34 +14,37 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].Title)
+                @Html.DisplayNameFor(model => model.Books[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].ISBN)
+                @Html.DisplayNameFor(model => model.Books[0].ISBN)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].Edition)
+                @Html.DisplayNameFor(model => model.Books[0].Edition)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].Publisher)
+                @Html.DisplayNameFor(model => model.Books[0].Publisher)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].PublicationYear)
+                @Html.DisplayNameFor(model => model.Books[0].PublicationYear)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].Description)
+                @Html.DisplayNameFor(model => model.Books[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].AvailabilityStatus)
+                @Html.DisplayNameFor(model => model.Books[0].AvailabilityStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].BookCategory)
+                @Html.DisplayNameFor(model => model.Books[0].ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].BookCategory)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Book) {
+@foreach (var item in Model.Books) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -64,6 +66,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AvailabilityStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BookCategory.Name)

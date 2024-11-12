@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -109,7 +109,7 @@ namespace DataAccess.Migrations
                     ISBN = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Edition = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Publisher = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    PublicationYear = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PublicationYear = table.Column<DateOnly>(type: "date", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AvailabilityStatus = table.Column<bool>(type: "bit", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -209,13 +209,13 @@ namespace DataAccess.Migrations
                         column: x => x.ChatRoomId,
                         principalTable: "ChatRooms",
                         principalColumn: "ChatRoomId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Messages_Users_FromUserId",
                         column: x => x.FromUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Messages_Users_ToUserId",
                         column: x => x.ToUserId,

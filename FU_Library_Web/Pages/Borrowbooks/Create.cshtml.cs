@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FU_Library_Web;
-using FU_Library_Web.Models;
+using DataAccess.Entity;
 
 namespace FU_Library_Web.Pages.Borrowbooks
 {
@@ -28,7 +28,7 @@ namespace FU_Library_Web.Pages.Borrowbooks
         }
 
         [BindProperty]
-        public BorrowBook BorrowBook { get; set; } = default!;
+        public BorrowBooks BorrowBook { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()

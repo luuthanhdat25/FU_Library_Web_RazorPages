@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Entity;
 using FU_Library_Web;
-using FU_Library_Web.Models;
 
-namespace FU_Library_Web.Pages.Books
+namespace FU_Library_Web.Pages.Book
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace FU_Library_Web.Pages.Books
         }
 
         [BindProperty]
-        public Book Book { get; set; } = default!;
+        public Books Books { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,15 +29,15 @@ namespace FU_Library_Web.Pages.Books
                 return NotFound();
             }
 
-            var book = await _context.Books.FirstOrDefaultAsync(m => m.BookId == id);
+            var books = await _context.Books.FirstOrDefaultAsync(m => m.BookId == id);
 
-            if (book == null)
+            if (books == null)
             {
                 return NotFound();
             }
             else
             {
-                Book = book;
+                Books = books;
             }
             return Page();
         }
@@ -49,11 +49,11 @@ namespace FU_Library_Web.Pages.Books
                 return NotFound();
             }
 
-            var book = await _context.Books.FindAsync(id);
-            if (book != null)
+            var books = await _context.Books.FindAsync(id);
+            if (books != null)
             {
-                Book = book;
-                _context.Books.Remove(Book);
+                Books = books;
+                _context.Books.Remove(Books);
                 await _context.SaveChangesAsync();
             }
 

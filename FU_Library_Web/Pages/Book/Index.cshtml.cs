@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Entity;
 using FU_Library_Web;
-using FU_Library_Web.Models;
 
-namespace FU_Library_Web.Pages.Books
+namespace FU_Library_Web.Pages.Book
 {
     public class IndexModel : PageModel
     {
@@ -19,12 +19,14 @@ namespace FU_Library_Web.Pages.Books
             _context = context;
         }
 
-        public IList<Book> Book { get;set; } = default!;
+        public IList<Books> Books { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Book = await _context.Books
-                .Include(b => b.BookCategory).ToListAsync();
+            Books = await _context.Books
+                .Include(b => b.BookCategory)
+                .Include(b => b.BookAuthor)
+                .ToListAsync();
         }
     }
 }
