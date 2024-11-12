@@ -30,7 +30,12 @@
 		[Required]
 		public bool AvailabilityStatus { get; set; }
 		public string ImageUrl { get; set; }
-		public BookAuthors BookAuthor { get; set; }
+
+		
+
+		public Guid BookAuthorId { get; set; }
+
+        public BookAuthors BookAuthor { get; set; }
 		
 		[Required]
 		public Guid BookCategoryId { get; set; }

@@ -363,19 +363,19 @@ namespace DataAccess.Migrations
                     b.HasOne("DataAccess.Entity.ChatRooms", "ChatRoom")
                         .WithMany()
                         .HasForeignKey("ChatRoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entity.Users", "FromUser")
                         .WithMany()
                         .HasForeignKey("FromUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entity.Users", "ToUser")
                         .WithMany()
                         .HasForeignKey("ToUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ChatRoom");

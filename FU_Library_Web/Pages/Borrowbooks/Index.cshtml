@@ -1,0 +1,60 @@
+﻿@page
+@model FU_Library_Web.Pages.Borrowbooks.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowBook[0].ReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowBook[0].BorrowedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowBook[0].Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowBook[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowBook[0].RequestStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BorrowBook) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestStatus.StatusName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.BorrowBookId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BorrowBookId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BorrowBookId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

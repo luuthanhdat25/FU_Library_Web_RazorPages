@@ -13,7 +13,6 @@
 		
 		public Users FromUser { get; set; }
 
-
 		[Required]
 		public Guid ToUserId { get; set; }
 
