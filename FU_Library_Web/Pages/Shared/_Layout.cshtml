@@ -46,14 +46,8 @@
             <ul class="h-100">
                 <li><a href="/">Trang chủ</a></li>
                 <li style="position: relative">
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
-                    {
+                   
                         <a asp-area="Admin" asp-page="/New/Index">Tin tức</a>
-                    }
-                    else
-                    {
-                        <a asp-area="News" asp-page="/Index">Tin tức</a>
-                    }
                     @* <ul class="dropdown-menu" aria-labelledby="newsDropdown">
                         <li><a class="dropdown-item" asp-area="Admin" asp-page="/New/Index">Tin hoạt động</a></li>
                     </ul> *@
