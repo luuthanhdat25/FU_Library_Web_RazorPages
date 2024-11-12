@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FU_Library_Web;
-using FU_Library_Web.Models;
+using DataAccess.Entity;
 
 namespace FU_Library_Web.Pages.Cate
 {
@@ -19,7 +19,7 @@ namespace FU_Library_Web.Pages.Cate
             _context = context;
         }
 
-        public BookCategory BookCategory { get; set; } = default!;
+        public BookCategories BookCategory { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

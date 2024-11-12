@@ -1,4 +1,4 @@
-using FU_Library_Web.Models;
+using DataAccess.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +14,7 @@ namespace FU_Library_Web.Areas.Admin.Pages.New
             _context = context;
         }
 
-        public News News { get; set; } = default!;
+        public  News News { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

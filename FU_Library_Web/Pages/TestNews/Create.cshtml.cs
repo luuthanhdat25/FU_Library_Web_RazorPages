@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FU_Library_Web;
-using FU_Library_Web.Models;
+using DataAccess.Entity;
 
 namespace FU_Library_Web.Pages.TestNews
 {
