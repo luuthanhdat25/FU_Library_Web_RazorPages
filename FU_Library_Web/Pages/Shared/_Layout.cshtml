@@ -46,36 +46,32 @@
             <ul class="h-100">
                 <li><a href="/">Trang chủ</a></li>
                 <li style="position: relative">
-                    <a href="#">Tin tức</a>
-                    <ul class="dropdown-menu" aria-labelledby="newsDropdown">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                    {
+                        <a asp-area="Admin" asp-page="/New/Index">Tin tức</a>
+                    }
+                    else
+                    {
+                        <a asp-area="News" asp-page="/Index">Tin tức</a>
+                    }
+                    @* <ul class="dropdown-menu" aria-labelledby="newsDropdown">
                         <li><a class="dropdown-item" asp-area="Admin" asp-page="/New/Index">Tin hoạt động</a></li>
-                    </ul>
+                    </ul> *@
                 </li>
-                <li style="position: relative">
-                    <a href="#">Tác giả</a>
-                    <ul class="dropdown-menu" aria-labelledby="authorDropdown">
-                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/Authorbook/Index">Danh sách tác giả</a></li>
-                        @* <li><a class="dropdown-item" asp-area="" asp-page="/Authobook/Create">Tạo tác giả</a></li> *@
-                    </ul>
-                </li>
-                <li style="position: relative">
-                    <a href="#">Loại sách</a>
-                    <ul class="dropdown-menu" aria-labelledby="bookCategoryDropdown">
-                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/Category/Index">Danh sách loại sách</a></li>
-                        @* <li><a class="dropdown-item" asp-area="Admin" asp-page="/Category/Create">Tạo loại sách</a></li> *@
-                    </ul>
-                </li>
-                <li style="position: relative">
-                    <a href="#">Sách</a>
-                    <ul class="dropdown-menu" aria-labelledby="bookDropdown">
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Book/Index">Danh sách sách</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-page="/Book/Create">Tạo sách</a></li>
-                    </ul>
-                </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("ADMIN"))
+                {
+                    <li style="position: relative">
+                        <a asp-area="Admin" asp-page="/Authorbook/Index">Tác giả</a>
+                    </li>
 
-                <li style="position: relative">
-                    <a href="/Chat/Index">Chat</a>
-                </li>
+                    <li style="position: relative">
+                        <a asp-area="Admin" asp-page="/Category/Index">Loại sách</a>
+                    </li>
+
+                    <li style="position: relative">
+                        <a asp-page="/Book/Index">Danh sách sách</a>
+                    </li>
+                }
             </ul>
         </nav>
     </header>
