@@ -1,4 +1,4 @@
-using DataAccess.Entity;
+﻿using DataAccess.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -33,12 +33,19 @@ namespace FU_Library_Web.Areas.Admin.Pages.AuthorBook
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
+
+            bool nameExists = await _context.BookAuthors
+                .AnyAsync(b => b.FullName == BookAuthor.FullName && b.BookAuthorId != BookAuthor.BookAuthorId);
+
+            if (nameExists)
+            {
+                ModelState.AddModelError("BookAuthor.FullName", "Tên tác giả đã tồn tại.");
                 return Page();
             }
 
@@ -62,6 +69,7 @@ namespace FU_Library_Web.Areas.Admin.Pages.AuthorBook
 
             return RedirectToPage("./Index");
         }
+
 
         private bool BookAuthorExists(Guid id)
         {

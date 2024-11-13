@@ -1,4 +1,4 @@
-using DataAccess.Entity;
+﻿using DataAccess.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +26,8 @@ namespace FU_Library_Web.Areas.Admin.Pages.Category
             var existedName = await _context.BookCategories.FirstOrDefaultAsync(it => it.Name.Equals(cateName));
             if (existedName != null)
             {
+                BookCategory = await _context.BookCategories.ToListAsync();
+                ModelState.AddModelError(string.Empty, "Thể loại đã tồn tại.");
                 return Page();
             }
             else

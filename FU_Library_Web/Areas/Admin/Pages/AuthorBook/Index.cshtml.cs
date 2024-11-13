@@ -1,4 +1,4 @@
-
+﻿
 using DataAccess.Entity;
 using DataAccess.Repository.Implement;
 using DataAccess.Repository.Interface;
@@ -11,30 +11,26 @@ namespace FU_Library_Web.Areas.Admin.Pages.AuthorBook
     public class IndexModel : PageModel
     {
         private readonly FU_Library_Web.DatabaseContext _context;
-        //private readonly IBookAuthorRepository _bookAuthorRepository;
 
         public IndexModel(FU_Library_Web.DatabaseContext context)
         {
             _context = context;
         }
 
-       /* public IndexModel(IBookAuthorRepository bookAuthorRepository)
-        {
-            _bookAuthorRepository = bookAuthorRepository;
-        }*/
 
         public IList<BookAuthors> BookAuthor { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
             BookAuthor = await _context.BookAuthors.ToListAsync();
-            //BookAuthor = await _bookAuthorRepository.GetAll();
         }
         public async Task<IActionResult> OnPostCreateAsync(string? authorName, string? authorDes)
         {
             var existedName = await _context.BookAuthors.FirstOrDefaultAsync(it => it.FullName.Equals(authorName));
             if (existedName != null)
             {
+                ModelState.AddModelError(string.Empty, "Tên tác giả đã tồn tại.");
+                BookAuthor = await _context.BookAuthors.ToListAsync();
                 return Page();
             }
             else

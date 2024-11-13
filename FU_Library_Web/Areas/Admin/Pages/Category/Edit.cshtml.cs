@@ -1,4 +1,4 @@
-using DataAccess.Entity;
+﻿using DataAccess.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -33,12 +33,19 @@ namespace FU_Library_Web.Areas.Admin.Pages.Category
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
+
+            bool nameExists = await _context.BookCategories
+                .AnyAsync(c => c.Name == BookCategory.Name && c.BookCategoryId != BookCategory.BookCategoryId);
+
+            if (nameExists)
+            {
+                ModelState.AddModelError("BookCategory.Name", "Tên thể loại đã tồn tại.");
                 return Page();
             }
 
@@ -62,6 +69,7 @@ namespace FU_Library_Web.Areas.Admin.Pages.Category
 
             return RedirectToPage("./Index");
         }
+
 
         private bool BookCategoryExists(Guid id)
         {

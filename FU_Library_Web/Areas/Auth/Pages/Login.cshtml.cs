@@ -50,7 +50,7 @@ namespace FU_Library_Web.Areas.Auth.Pages
                 return Page();
             }
 
-           /* if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
+            /*if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
             {
                 ModelState.AddModelError(nameof(Password), "Password must be at least 6 characters long.");
                 return Page();
